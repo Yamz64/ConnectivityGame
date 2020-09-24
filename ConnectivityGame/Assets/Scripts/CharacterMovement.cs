@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
     public float jump_speed;
     public float jump_timer;
     public float gravity_scale;
+    public bool can_jump;
     public bool grounded = false;
     public bool flipped;
 
@@ -16,28 +17,31 @@ public class CharacterMovement : MonoBehaviour
     private SpriteRenderer sprite;
 
     //function handles jumping and vertical movement
-    public void JumpFunc()
+    public void JumpFunc(bool jumpable)
     {
-        if (grounded)
+        if (jumpable)
         {
-            jump_timer = max_jump_timer;
-        }
-
-        //jump is inputted
-        if (Input.GetAxis("Vertical") > 0.0f || Input.GetAxis("Jump") > 0.0f)
-        {
-            if (jump_timer > 0.0f)
+            if (grounded)
             {
-                jump_timer -= 1.0f * Time.deltaTime;
-                rb.velocity = new Vector2(rb.velocity.x, jump_speed);
+                jump_timer = max_jump_timer;
             }
-        }
-        //Jump is released
-        else if (Input.GetAxis("Vertical") == 0.0f && Input.GetAxis("Jump") == 0.0f)
-        {
-            if (!grounded)
+
+            //jump is inputted
+            if (Input.GetAxis("Vertical") > 0.0f || Input.GetAxis("Jump") > 0.0f)
             {
-                jump_timer = 0.0f;
+                if (jump_timer > 0.0f)
+                {
+                    jump_timer -= 1.0f * Time.deltaTime;
+                    rb.velocity = new Vector2(rb.velocity.x, jump_speed);
+                }
+            }
+            //Jump is released
+            else if (Input.GetAxis("Vertical") == 0.0f && Input.GetAxis("Jump") == 0.0f)
+            {
+                if (!grounded)
+                {
+                    jump_timer = 0.0f;
+                }
             }
         }
     }
@@ -58,7 +62,7 @@ public class CharacterMovement : MonoBehaviour
     {
         //--MOVEMENT--
         //--handle vertical movement--
-        JumpFunc();
+        JumpFunc(can_jump);
 
         //--handle horizontal movement--
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * move_speed, rb.velocity.y);
