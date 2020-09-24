@@ -1140,8 +1140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_speed: 4
   jump_speed: 6
-  jump_timer: 0.3
-  gravity_scale: 2.5
+  jump_timer: 0.2
+  gravity_scale: 4
   grounded: 0
   flipped: 0
 --- !u!50 &2127065184
