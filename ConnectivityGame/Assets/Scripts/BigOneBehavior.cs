@@ -59,12 +59,20 @@ public class BigOneBehavior : CharacterMovement
             else
             {
                 can_jump = false;
-                //throw the object
+                //throw the object or put it down
                 if (Input.GetButtonDown("Action"))
                 {
-                    held_object.transform.position = thrown_object_position.transform.position;
+                    if (!(Input.GetAxis("Vertical") < 0.0f))
+                    {
+                        held_object.transform.position = thrown_object_position.transform.position;
+                    }
+                    else
+                    {
+                        held_object.transform.position = new Vector2(thrown_object_position.transform.position.x, transform.position.y);
+                    }
                     held_object.GetComponent<Collider2D>().enabled = true;
                     held_object.GetComponent<Rigidbody2D>().isKinematic = false;
+                    if(!(Input.GetAxis("Vertical") < 0.0f))
                     held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force);
                     held_object = null;
                     can_jump = true;
@@ -112,12 +120,20 @@ public class BigOneBehavior : CharacterMovement
             else
             {
                 can_jump = false;
-                //throw the object
+                //throw the object or put it down
                 if (Input.GetButtonDown("Action"))
                 {
-                    held_object.transform.position = thrown_object_position.transform.position;
+                    if (!(Input.GetAxis("Vertical") < 0.0f))
+                    {
+                        held_object.transform.position = thrown_object_position.transform.position;
+                    }
+                    else
+                    {
+                        held_object.transform.position = new Vector2(thrown_object_position.transform.position.x, transform.position.y);
+                    }
                     held_object.GetComponent<Collider2D>().enabled = true;
                     held_object.GetComponent<Rigidbody2D>().isKinematic = false;
+                    if(!(Input.GetAxis("Vertical") < 0.0f))
                     held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(1.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force);
                     held_object = null;
                     can_jump = true;
