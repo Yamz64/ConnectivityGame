@@ -197,12 +197,13 @@ MonoBehaviour:
   jump_speed: 6
   jump_timer: 0.2
   gravity_scale: 4
-  can_jump: 0
+  can_jump: 1
   grounded: 0
   flipped: 0
   horizontal_grabrange: 1.1
   vertical_grabrange: 1.5
   throw_force: 300
+  vertical_coefficient: 2.5
 --- !u!1 &8864618136114297505
 GameObject:
   m_ObjectHideFlags: 0
