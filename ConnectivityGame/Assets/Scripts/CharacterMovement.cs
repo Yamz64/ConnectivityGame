@@ -16,8 +16,12 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
 
+    //--ACCESSORS--
+    public float GetMaxJump() { return max_jump_timer; }
+    public Rigidbody2D GetRB() { return rb; }
+
     //function handles jumping and vertical movement
-    public void JumpFunc(bool jumpable)
+    public virtual void JumpFunc(bool jumpable = true)
     {
         if (jumpable)
         {
