@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class LittleOneBehavior : CharacterMovement
 {
+    public float transition_threshold;
     public bool extra_jump;
     public bool used_extra_jump;
+
+    private Animator anim;
 
     public override void JumpFunc(bool jumpable = true)
     {
@@ -50,17 +53,54 @@ public class LittleOneBehavior : CharacterMovement
         }
     }
 
+    void Animate()
+    {
+        //walk animation
+        anim.SetBool("Walk", Mathf.Abs(Input.GetAxis("Horizontal")) > 0.0f);
+
+        //Handle Aerial Movement
+        if (grounded)
+        {
+            anim.SetInteger("JumpState", 0);
+        }
+        else
+        {
+            //if not moving vertically fast enough
+            if (Mathf.Abs(base.GetRB().velocity.y) <= transition_threshold)
+            {
+                anim.SetInteger("JumpState", 2);
+            }
+            //if moving vertically fast enough
+            else
+            {
+                //if moving up
+                if (Mathf.Abs(base.GetRB().velocity.y) / base.GetRB().velocity.y == 1)
+                {
+                    anim.SetInteger("JumpState", 1);
+                }
+                //if moving down
+                else
+                {
+                    anim.SetInteger("JumpState", 3);
+                }
+            }
+        }
+    }
+
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
         extra_jump = true;
         used_extra_jump = false;
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     new void Update()
     {
         base.Update();
+        Animate();
     }
 }

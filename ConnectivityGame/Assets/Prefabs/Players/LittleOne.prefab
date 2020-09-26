@@ -159,7 +159,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &16384129409219559
 Animator:
   serializedVersion: 3
@@ -170,7 +170,7 @@ Animator:
   m_GameObject: {fileID: 8400397618763903654}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24182341bd2f76e499a5bfae550bb12d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -193,10 +193,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_speed: 4
   jump_speed: 6
-  jump_timer: 0.25
+  jump_timer: 0.2
   gravity_scale: 4
   can_jump: 1
   grounded: 0
   flipped: 0
+  transition_threshold: 3
   extra_jump: 0
   used_extra_jump: 0
