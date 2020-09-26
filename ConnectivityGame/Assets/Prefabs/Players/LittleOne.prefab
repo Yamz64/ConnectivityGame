@@ -158,7 +158,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 4aa625680edf63d4b9143aee84099989, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &16384129409219559
 Animator:
@@ -192,9 +192,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move_speed: 4
-  jump_speed: 6
-  jump_timer: 0.2
-  gravity_scale: 4
+  jump_speed: 7
+  jump_timer: 0.1
+  gravity_scale: 3
   can_jump: 1
   grounded: 0
   flipped: 0
