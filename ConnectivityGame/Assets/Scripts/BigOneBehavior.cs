@@ -8,12 +8,14 @@ public class BigOneBehavior : CharacterMovement
     public float vertical_grabrange;
     public float throw_force;
     public float vertical_coefficient;
+    public float transition_threshold;          //amount of vertical speed needed to transition to another state of vertical animation
     private Vector3 held_object_transform;      //position of held object starting the game
     private Vector3 thrown_object_transform;    //position of the thrown object starting the game
     private GameObject held_object_position;    //current position of held object
     private GameObject thrown_object_position;  //current position of thrown object
 
     private GameObject held_object;
+    private Animator anim;
 
     //function that handles throwing objects
     void ThrowHandler()
@@ -29,7 +31,7 @@ public class BigOneBehavior : CharacterMovement
                 {
                     //raycast in particular direction
                     bool valid = false;
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, horizontal_grabrange);
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3.down * .1f), Vector2.left, horizontal_grabrange);
                     if (hit.collider != null)
                     {
                         if (hit.collider.gameObject.tag == "Box")
@@ -96,7 +98,7 @@ public class BigOneBehavior : CharacterMovement
                 {
                     //raycast in particular direction
                     bool valid = false;
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, horizontal_grabrange);
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3.down * .1f), Vector2.right, horizontal_grabrange);
                     if (hit.collider != null)
                     {
                         if (hit.collider.gameObject.tag == "Box")
@@ -159,6 +161,41 @@ public class BigOneBehavior : CharacterMovement
             held_object.transform.position = held_object_position.transform.position;
     }
 
+    void Animate()
+    {
+        //walk animation
+        anim.SetBool("Walk", Mathf.Abs(Input.GetAxis("Horizontal")) > 0.0f);
+        anim.SetBool("Holding", held_object != null);
+
+        //Handle Aerial Movement
+        if (grounded)
+        {
+            anim.SetInteger("JumpState", 0);
+        }
+        else
+        {
+            //if not moving vertically fast enough
+            if(Mathf.Abs(base.GetRB().velocity.y) <= transition_threshold)
+            {
+                anim.SetInteger("JumpState", 2);
+            }
+            //if moving vertically fast enough
+            else
+            {
+                //if moving up
+                if(Mathf.Abs(base.GetRB().velocity.y)/base.GetRB().velocity.y == 1)
+                {
+                    anim.SetInteger("JumpState", 1);
+                }
+                //if moving down
+                else
+                {
+                    anim.SetInteger("JumpState", 3);
+                }
+            }
+        }
+    }
+
     new void Start()
     {
         base.Start();
@@ -169,6 +206,8 @@ public class BigOneBehavior : CharacterMovement
         thrown_object_transform = thrown_object_position.transform.localPosition;
 
         held_object = null;
+
+        anim = GetComponent<Animator>();
     }
 
     new void Update()
@@ -187,5 +226,6 @@ public class BigOneBehavior : CharacterMovement
         }
 
         ThrowHandler();
+        Animate();
     }
 }
