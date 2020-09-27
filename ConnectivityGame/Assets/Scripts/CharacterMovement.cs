@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class CharacterMovement : NetworkBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     public float network_horizontal;
     public float network_vertical;
@@ -69,6 +69,11 @@ public class CharacterMovement : NetworkBehaviour
     // Update is called once per frame
     public void Update()
     {
+        //misc
+        network_vertical = Input.GetAxis("Vertical");
+        network_horizontal = Input.GetAxis("Horizontal");
+        network_action = Input.GetButtonDown("Action");
+
         //--MOVEMENT--
         //--handle vertical movement--
         JumpFunc(can_jump);

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8641344728804503538}
   - component: {fileID: 5003151732313296561}
   - component: {fileID: 4013537418398633839}
+  - component: {fileID: 7343351204823608838}
   m_Layer: 0
   m_Name: PlayerSpawnerObject
-  m_TagString: Untagged
+  m_TagString: PlayerSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,5 +82,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  type: 0
   big_one: {fileID: 8864618135579725365, guid: 83bca71a61beb344e9cc309ba523e25e, type: 3}
   little_one: {fileID: 8400397618763903654, guid: 34394d9e49ea3154cb7354a13d8d9f1a, type: 3}
+--- !u!114 &7343351204823608838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819269386317296539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1f5cbc0aff59e47a95feb24927c327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  line_prefab: {fileID: 4690644615950534369, guid: a42663ac64cc9184193609d9aa47e837, type: 3}
+  mouse_positions: []
