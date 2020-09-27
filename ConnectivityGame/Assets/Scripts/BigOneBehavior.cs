@@ -27,7 +27,7 @@ public class BigOneBehavior : CharacterMovement
             //if not holding an object
             if (held_object == null)
             {
-                if (Input.GetButtonDown("Action"))
+                if (network_action)
                 {
                     //raycast in particular direction
                     bool valid = false;
@@ -63,9 +63,9 @@ public class BigOneBehavior : CharacterMovement
             {
                 can_jump = false;
                 //throw the object or put it down
-                if (Input.GetButtonDown("Action"))
+                if (network_action)
                 {
-                    if (!(Input.GetAxis("Vertical") < 0.0f))
+                    if (!(network_vertical < 0.0f))
                     {
                         held_object.transform.position = thrown_object_position.transform.position;
                     }
@@ -75,11 +75,11 @@ public class BigOneBehavior : CharacterMovement
                     }
                     held_object.GetComponent<Collider2D>().enabled = true;
                     held_object.GetComponent<Rigidbody2D>().isKinematic = false;
-                    if (Input.GetAxis("Vertical") == 0.0f)
+                    if (network_vertical == 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force);
                     }
-                    else if(Input.GetAxis("Vertical") > 0.0f)
+                    else if(network_vertical > 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force * vertical_coefficient);
                     }
@@ -94,7 +94,7 @@ public class BigOneBehavior : CharacterMovement
             //if not holding an object
             if (held_object == null)
             {
-                if (Input.GetButtonDown("Action"))
+                if (network_action)
                 {
                     //raycast in particular direction
                     bool valid = false;
@@ -130,9 +130,9 @@ public class BigOneBehavior : CharacterMovement
             {
                 can_jump = false;
                 //throw the object or put it down
-                if (Input.GetButtonDown("Action"))
+                if (network_action)
                 {
-                    if (!(Input.GetAxis("Vertical") < 0.0f))
+                    if (!(network_vertical < 0.0f))
                     {
                         held_object.transform.position = thrown_object_position.transform.position;
                     }
@@ -142,11 +142,11 @@ public class BigOneBehavior : CharacterMovement
                     }
                     held_object.GetComponent<Collider2D>().enabled = true;
                     held_object.GetComponent<Rigidbody2D>().isKinematic = false;
-                    if (Input.GetAxis("Vertical") == 0.0f)
+                    if (network_vertical == 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(1.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force);
                     }
-                    else if (Input.GetAxis("Vertical") > 0.0f)
+                    else if (network_vertical > 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force * vertical_coefficient);
                     }
@@ -164,7 +164,7 @@ public class BigOneBehavior : CharacterMovement
     void Animate()
     {
         //walk animation
-        anim.SetBool("Walk", Mathf.Abs(Input.GetAxis("Horizontal")) > 0.0f);
+        anim.SetBool("Walk", Mathf.Abs(network_horizontal) > 0.0f);
         anim.SetBool("Holding", held_object != null);
 
         //Handle Aerial Movement

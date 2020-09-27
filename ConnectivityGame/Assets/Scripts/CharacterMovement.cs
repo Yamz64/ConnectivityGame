@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : NetworkBehaviour
 {
+    public float network_horizontal;
+    public float network_vertical;
+    public bool network_action;
+
     public float move_speed;
     public float jump_speed;
     public float jump_timer;
@@ -31,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
             //jump is inputted
-            if (Input.GetAxis("Vertical") > 0.0f || Input.GetAxis("Jump") > 0.0f)
+            if (network_vertical > 0.0f)
             {
                 if (jump_timer > 0.0f)
                 {
@@ -40,7 +45,7 @@ public class CharacterMovement : MonoBehaviour
                 }
             }
             //Jump is released
-            else if (Input.GetAxis("Vertical") == 0.0f && Input.GetAxis("Jump") == 0.0f)
+            else if (network_vertical == 0.0f)
             {
                 if (!grounded)
                 {
@@ -69,19 +74,19 @@ public class CharacterMovement : MonoBehaviour
         JumpFunc(can_jump);
 
         //--handle horizontal movement--
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * move_speed, rb.velocity.y);
+        rb.velocity = new Vector2(network_horizontal * move_speed, rb.velocity.y);
 
         //--VISUAL--
         //--handle sprite flipping
-        if(Input.GetAxis("Horizontal") > 0.0f)
+        if (network_horizontal > 0.0f)
         {
             flipped = false;
         }
-        else if(Input.GetAxis("Horizontal") < 0.0f)
+        else if (network_horizontal < 0.0f)
         {
             flipped = true;
         }
-        sprite.flipX = flipped;
+            sprite.flipX = flipped;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

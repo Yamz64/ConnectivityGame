@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 8400397618763903648}
   - component: {fileID: 16384129409219559}
   - component: {fileID: 8400397618763903655}
+  - component: {fileID: 1282504692101771537}
+  - component: {fileID: 4755185799149048426}
   m_Layer: 0
   m_Name: LittleOne
-  m_TagString: Untagged
+  m_TagString: Little One
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,6 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ce4a90680d5b8478355c64ce6d1c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  network_horizontal: 0
+  network_vertical: 0
+  network_action: 0
   move_speed: 4
   jump_speed: 7
   jump_timer: 0.1
@@ -201,3 +208,37 @@ MonoBehaviour:
   transition_threshold: 3
   extra_jump: 0
   used_extra_jump: 0
+--- !u!114 &1282504692101771537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8400397618763903654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
+--- !u!114 &4755185799149048426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8400397618763903654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01

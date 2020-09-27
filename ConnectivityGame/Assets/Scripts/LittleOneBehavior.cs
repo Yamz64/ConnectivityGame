@@ -22,7 +22,7 @@ public class LittleOneBehavior : CharacterMovement
             }
 
             //jump is inputted
-            if (Input.GetAxis("Vertical") > 0.0f || Input.GetAxis("Jump") > 0.0f)
+            if (network_vertical > 0.0f)
             {
                 if (jump_timer > 0.0f)
                 {
@@ -32,7 +32,7 @@ public class LittleOneBehavior : CharacterMovement
                 if (!extra_jump) used_extra_jump = true;
             }
             //Jump is released
-            else if (Input.GetAxis("Vertical") == 0.0f && Input.GetAxis("Jump") == 0.0f)
+            else if (network_vertical == 0.0f)
             {
                 if (!grounded)
                 {
@@ -56,7 +56,7 @@ public class LittleOneBehavior : CharacterMovement
     void Animate()
     {
         //walk animation
-        anim.SetBool("Walk", Mathf.Abs(Input.GetAxis("Horizontal")) > 0.0f);
+        anim.SetBool("Walk", Mathf.Abs(network_horizontal) > 0.0f);
 
         //Handle Aerial Movement
         if (grounded)
@@ -99,7 +99,7 @@ public class LittleOneBehavior : CharacterMovement
 
     // Update is called once per frame
     new void Update()
-    {
+{
         base.Update();
         Animate();
     }

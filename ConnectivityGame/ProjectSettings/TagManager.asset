@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Box
+  - Big One
+  - Little One
   layers:
   - Default
   - TransparentFX
