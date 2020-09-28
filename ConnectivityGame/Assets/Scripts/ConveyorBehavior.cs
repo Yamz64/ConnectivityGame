@@ -41,11 +41,11 @@ public class ConveyorBehavior : ToggleItemParent
             {
                 if (!direction)
                 {
-                    other.velocity += Vector2.right * conveyor_speed/box_dampen;
+                    other.velocity = Vector2.right * conveyor_speed/box_dampen;
                 }
                 else
                 {
-                    other.velocity += Vector2.left * conveyor_speed/box_dampen;
+                    other.velocity = Vector2.left * conveyor_speed/box_dampen;
                 }
             }
         }
