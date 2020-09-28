@@ -10,8 +10,10 @@ public class CharacterMovement : MonoBehaviour
     public float network_vertical;
     public bool network_action;
 
+    public int conveyor_state;      //state of the character on a conveyor belt, if the player is not on a conveyor belt 0, if on right conveyor belt 1, if on left conveyor belt 2
     public float move_speed;
     public float jump_speed;
+    public float conveyor_speed;
     public float super_jump_speed;
     public float jump_timer;
     public float gravity_scale;
@@ -96,7 +98,20 @@ public class CharacterMovement : MonoBehaviour
         JumpFunc(can_jump);
 
         //--handle horizontal movement--
-        rb.velocity = new Vector2(network_horizontal * move_speed, rb.velocity.y);
+        switch (conveyor_state) {
+            case 0:
+                rb.velocity = new Vector2(network_horizontal * move_speed, rb.velocity.y);
+                break;
+            case 1:
+                rb.velocity = new Vector2(network_horizontal * move_speed + conveyor_speed, rb.velocity.y);
+                break;
+            case 2:
+                rb.velocity = new Vector2(network_horizontal * move_speed - conveyor_speed, rb.velocity.y);
+                break;
+            default:
+                rb.velocity = new Vector2(network_horizontal * move_speed, rb.velocity.y);
+                break;
+        }
 
         //--VISUAL--
         //--handle sprite flipping
