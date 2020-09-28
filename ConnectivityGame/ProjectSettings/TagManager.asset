@@ -9,6 +9,7 @@ TagManager:
   - Little One
   - PlayerSpawner
   - BreakableBox
+  - Hazards
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Little One
   - 
   - 
   - 

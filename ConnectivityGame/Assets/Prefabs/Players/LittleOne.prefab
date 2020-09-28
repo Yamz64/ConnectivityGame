@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 16384129409219559}
   - component: {fileID: 8400397618763903655}
   - component: {fileID: -6162778403996564294}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LittleOne
   m_TagString: Little One
   m_Icon: {fileID: 0}

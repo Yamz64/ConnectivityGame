@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Mirror;
 
 public class CharacterMovement : MonoBehaviour
@@ -27,6 +28,11 @@ public class CharacterMovement : MonoBehaviour
     //--ACCESSORS--
     public float GetMaxJump() { return max_jump_timer; }
     public Rigidbody2D GetRB() { return rb; }
+
+    public void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     //function handles jumping and vertical movement
     public virtual void JumpFunc(bool jumpable = true)
@@ -103,6 +109,14 @@ public class CharacterMovement : MonoBehaviour
             flipped = true;
         }
             sprite.flipX = flipped;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Hazards")
+        {
+            Die();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
