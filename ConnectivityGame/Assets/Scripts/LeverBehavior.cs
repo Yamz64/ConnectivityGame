@@ -52,4 +52,12 @@ public class LeverBehavior : MonoBehaviour
             in_trigger = true;
         }
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "Little One")
+        {
+            in_trigger = false;
+        }
+    }
 }
