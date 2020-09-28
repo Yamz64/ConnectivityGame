@@ -94,13 +94,15 @@ public class CharacterMovement : MonoBehaviour
             sprite.flipX = flipped;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
+        if(other.tag != "Little One" && other.tag != "Big One")
         grounded = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.tag != "Little One" && other.tag != "Big One")
         grounded = false;
     }
 }

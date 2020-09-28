@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BigOneBehavior : CharacterMovement
 {
+    public bool stop_grab;
     public float horizontal_grabrange;
     public float vertical_grabrange;
     public float throw_force;
@@ -14,12 +15,23 @@ public class BigOneBehavior : CharacterMovement
     private GameObject held_object_position;    //current position of held object
     private GameObject thrown_object_position;  //current position of thrown object
 
-    private GameObject held_object;
+    public GameObject held_object;
     private Animator anim;
+
+    public void EscapeHandler()
+    {
+        if (GameObject.FindGameObjectWithTag("Little One")) GameObject.FindGameObjectWithTag("Little One").GetComponent<LittleOneBehavior>().held = false;
+        GameObject.FindGameObjectWithTag("Little One").GetComponents<Collider2D>()[0].enabled = true;
+        GameObject.FindGameObjectWithTag("Little One").GetComponents<Collider2D>()[1].enabled = true;
+        GameObject.FindGameObjectWithTag("Little One").GetComponent<Rigidbody2D>().isKinematic = false;
+        held_object = null;
+        can_jump = true;
+        stop_grab = false;
+    }
 
     //function that handles throwing objects
     void ThrowHandler()
-    {
+{
         //handle throwing
         //to the left
         if (flipped)
@@ -31,15 +43,20 @@ public class BigOneBehavior : CharacterMovement
                 {
                     //raycast in particular direction
                     bool valid = false;
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3.down * .1f), Vector2.left, horizontal_grabrange);
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3.down * .3f), Vector2.left, horizontal_grabrange);
                     if (hit.collider != null)
                     {
-                        if (hit.collider.gameObject.tag == "Box")
+                        if (hit.collider.gameObject.tag == "Box" || hit.collider.gameObject.tag == "Little One")
                         {
                             valid = true;
                             held_object = hit.collider.gameObject;
-                            held_object.GetComponent<Collider2D>().enabled = false;
+                            Collider2D[] colliders = held_object.GetComponents<Collider2D>();
+                            foreach (Collider2D col in colliders)
+                            {
+                                col.enabled = false;
+                            }
                             held_object.GetComponent<Rigidbody2D>().isKinematic = true;
+                            if (held_object.tag == "Little One") held_object.GetComponent<LittleOneBehavior>().held = true;
                         }
                     }
                     //check below the character for a valid object if nothing is found to the side
@@ -48,11 +65,16 @@ public class BigOneBehavior : CharacterMovement
                         hit = Physics2D.Raycast(transform.position, Vector2.down, horizontal_grabrange);
                         if (hit.collider != null)
                         {
-                            if (hit.collider.gameObject.tag == "Box")
+                            if (hit.collider.gameObject.tag == "Box" || hit.collider.gameObject.tag == "Little One")
                             {
                                 held_object = hit.collider.gameObject;
-                                held_object.GetComponent<Collider2D>().enabled = false;
+                                Collider2D[] colliders = held_object.GetComponents<Collider2D>();
+                                foreach (Collider2D col in colliders)
+                                {
+                                    col.enabled = false;
+                                }
                                 held_object.GetComponent<Rigidbody2D>().isKinematic = true;
+                                if (held_object.tag == "Little One") held_object.GetComponent<LittleOneBehavior>().held = true;
                             }
                         }
                     }
@@ -73,13 +95,17 @@ public class BigOneBehavior : CharacterMovement
                     {
                         held_object.transform.position = new Vector2(thrown_object_position.transform.position.x, transform.position.y);
                     }
-                    held_object.GetComponent<Collider2D>().enabled = true;
+                    Collider2D[] colliders = held_object.GetComponents<Collider2D>();
+                    foreach (Collider2D col in colliders)
+                    {
+                        col.enabled = true;
+                    }
                     held_object.GetComponent<Rigidbody2D>().isKinematic = false;
                     if (network_vertical == 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force);
                     }
-                    else if(network_vertical > 0.0f)
+                    else if (network_vertical > 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force * vertical_coefficient);
                     }
@@ -98,15 +124,21 @@ public class BigOneBehavior : CharacterMovement
                 {
                     //raycast in particular direction
                     bool valid = false;
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3.down * .1f), Vector2.right, horizontal_grabrange);
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3.down * .3f), Vector2.right, horizontal_grabrange);
+                    Debug.DrawRay(transform.position + Vector3.down * .3f, Vector2.right, Color.red, .5f);
                     if (hit.collider != null)
                     {
-                        if (hit.collider.gameObject.tag == "Box")
+                        if (hit.collider.gameObject.tag == "Box" || hit.collider.gameObject.tag == "Little One")
                         {
                             valid = true;
                             held_object = hit.collider.gameObject;
-                            held_object.GetComponent<Collider2D>().enabled = false;
+                            Collider2D[] colliders = held_object.GetComponents<Collider2D>();
+                            foreach(Collider2D col in colliders)
+                            {
+                                col.enabled = false;
+                            }
                             held_object.GetComponent<Rigidbody2D>().isKinematic = true;
+                            if (held_object.gameObject.tag == "Little One") held_object.GetComponent<LittleOneBehavior>().held = true;
                         }
                     }
                     //check below the character for a valid object if nothing is found to the side
@@ -115,11 +147,16 @@ public class BigOneBehavior : CharacterMovement
                         hit = Physics2D.Raycast(transform.position, Vector2.down, horizontal_grabrange);
                         if (hit.collider != null)
                         {
-                            if (hit.collider.gameObject.tag == "Box")
+                            if (hit.collider.gameObject.tag == "Box" || hit.collider.gameObject.tag == "Little One")
                             {
                                 held_object = hit.collider.gameObject;
-                                held_object.GetComponent<Collider2D>().enabled = false;
+                                Collider2D[] colliders = held_object.GetComponents<Collider2D>();
+                                foreach (Collider2D col in colliders)
+                                {
+                                    col.enabled = false;
+                                }
                                 held_object.GetComponent<Rigidbody2D>().isKinematic = true;
+                                if (held_object.gameObject.tag == "Little One") held_object.GetComponent<LittleOneBehavior>().held = true;
                             }
                         }
                     }
@@ -140,7 +177,11 @@ public class BigOneBehavior : CharacterMovement
                     {
                         held_object.transform.position = new Vector2(thrown_object_position.transform.position.x, transform.position.y);
                     }
-                    held_object.GetComponent<Collider2D>().enabled = true;
+                    Collider2D[] colliders = held_object.GetComponents<Collider2D>();
+                    foreach (Collider2D col in colliders)
+                    {
+                        col.enabled = true;
+                    }
                     held_object.GetComponent<Rigidbody2D>().isKinematic = false;
                     if (network_vertical == 0.0f)
                     {
@@ -227,5 +268,6 @@ public class BigOneBehavior : CharacterMovement
 
         ThrowHandler();
         Animate();
+        if (stop_grab) { EscapeHandler(); }
     }
 }

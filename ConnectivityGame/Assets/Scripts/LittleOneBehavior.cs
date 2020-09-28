@@ -5,6 +5,7 @@ using UnityEngine;
 public class LittleOneBehavior : CharacterMovement
 {
     public float transition_threshold;
+    public bool held;
     public bool extra_jump;
     public bool used_extra_jump;
 
@@ -56,7 +57,7 @@ public class LittleOneBehavior : CharacterMovement
     void Animate()
     {
         //walk animation
-        anim.SetBool("Walk", Mathf.Abs(network_horizontal) > 0.0f);
+        anim.SetBool("Walk", Mathf.Abs(network_horizontal) > 0.0f && !held);
 
         //Handle Aerial Movement
         if (grounded)
@@ -99,8 +100,18 @@ public class LittleOneBehavior : CharacterMovement
 
     // Update is called once per frame
     new void Update()
-{
-        base.Update();
+    {
+        if (!held)
+        {
+            base.Update();
+        }
+        else
+        {
+            network_vertical = Input.GetAxis("Vertical");
+            if (network_vertical > 0.0f) GameObject.FindGameObjectWithTag("Big One").GetComponent<BigOneBehavior>().stop_grab = true;
+        }
+
+        if (grounded) held = false;
         Animate();
     }
 }
