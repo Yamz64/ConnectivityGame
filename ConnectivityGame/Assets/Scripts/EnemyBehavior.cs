@@ -91,5 +91,12 @@ public class EnemyBehavior : MonoBehaviour
         {
             other.GetComponent<CharacterMovement>().Die();
         }
+        if(other.tag == "Box" || other.tag == "BreakableBox")
+        {
+            if(other.GetComponent<Rigidbody2D>().velocity.magnitude > 0.0f)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
