@@ -104,12 +104,20 @@ public class BigOneBehavior : CharacterMovement
                     if (network_vertical == 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force);
-                        if (held_object.tag == "BreakableBox") held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                        if (held_object.tag == "BreakableBox")
+                        {
+                            held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                            held_object.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                        }
                     }
                     else if (network_vertical > 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force * vertical_coefficient);
-                        if (held_object.tag == "BreakableBox") held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                        if (held_object.tag == "BreakableBox")
+                        {
+                            held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                            held_object.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                        }
                     }
                     held_object = null;
                     can_jump = true;
@@ -188,12 +196,20 @@ public class BigOneBehavior : CharacterMovement
                     if (network_vertical == 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(1.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force);
-                        if (held_object.tag == "BreakableBox") held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                        if (held_object.tag == "BreakableBox")
+                        {
+                            held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                            held_object.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                        }
                     }
                     else if (network_vertical > 0.0f)
                     {
                         held_object.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 1.0f) * held_object.GetComponent<Rigidbody2D>().mass * throw_force * vertical_coefficient);
-                        if (held_object.tag == "BreakableBox") held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                        if (held_object.tag == "BreakableBox")
+                        {
+                            held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                            held_object.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                        }
                     }
                     held_object = null;
                     can_jump = true;
