@@ -59,7 +59,7 @@ public class MoveablePlatformBehavior : ToggleItemParent
             if (jump)
             {
                 other.GetComponent<CharacterMovement>().super_lock = false;
-                other.GetComponent<CharacterMovement>().super_jump = false;
+                other.GetComponent<CharacterMovement>().super_jump = true;
             }
         }
     }
