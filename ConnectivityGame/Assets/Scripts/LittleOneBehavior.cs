@@ -8,6 +8,7 @@ public class LittleOneBehavior : CharacterMovement
     public bool held;
     public bool extra_jump;
     public bool used_extra_jump;
+    public bool activate;
 
     private Animator anim;
 
