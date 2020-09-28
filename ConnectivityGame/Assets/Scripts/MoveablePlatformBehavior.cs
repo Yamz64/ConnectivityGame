@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveablePlatformBehavior : ToggleItemParent
 {
+    public bool jump;
     public float speed;
     private bool last_toggle;
     public Vector2 on_position;
@@ -42,6 +43,11 @@ public class MoveablePlatformBehavior : ToggleItemParent
         if(other.tag == "Little One" || other.tag == "Big One" || other.tag == "Box" || other.tag == "BreakableBox")
         {
             other.gameObject.transform.parent = gameObject.transform;
+            if (jump)
+            {
+                other.GetComponent<CharacterMovement>().super_lock = true;
+                other.GetComponent<CharacterMovement>().super_jump = true;
+            }
         }
     }
 
