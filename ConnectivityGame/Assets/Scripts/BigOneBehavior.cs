@@ -120,6 +120,11 @@ public class BigOneBehavior : CharacterMovement
                             held_object.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                         }
                     }
+                    if (held_object.tag == "BreakableBox")
+                    {
+                        held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                        held_object.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                    }
                     held_object = null;
                     can_jump = true;
                 }
@@ -211,6 +216,11 @@ public class BigOneBehavior : CharacterMovement
                             held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
                             held_object.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                         }
+                    }
+                    if (held_object.tag == "BreakableBox")
+                    {
+                        held_object.GetComponent<BreakableBoxBehavior>().destructible = true;
+                        held_object.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                     }
                     held_object = null;
                     can_jump = true;

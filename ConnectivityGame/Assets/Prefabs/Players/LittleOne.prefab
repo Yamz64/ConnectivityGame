@@ -197,7 +197,7 @@ MonoBehaviour:
   network_action: 0
   move_speed: 4
   jump_speed: 7.5
-  super_jump_speed: 16
+  super_jump_speed: 13
   jump_timer: 0.1
   gravity_scale: 3
   can_jump: 1
