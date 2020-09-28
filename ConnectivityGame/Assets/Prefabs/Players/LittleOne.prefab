@@ -197,14 +197,19 @@ MonoBehaviour:
   network_action: 0
   move_speed: 4
   jump_speed: 7
+  super_jump_speed: 16
   jump_timer: 0.1
   gravity_scale: 3
   can_jump: 1
   grounded: 0
   flipped: 0
+  super_jump: 0
+  super_lock: 0
   transition_threshold: 3
+  held: 0
   extra_jump: 0
   used_extra_jump: 0
+  activate: 0
 --- !u!114 &-6162778403996564294
 MonoBehaviour:
   m_ObjectHideFlags: 0
