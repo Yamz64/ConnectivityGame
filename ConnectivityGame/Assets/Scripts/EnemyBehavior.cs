@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    public int conveyor_state;
     public bool direction;                  //direction the enemy is walking false = right, true = left
+    public float conveyor_speed;
     public float raycast_distance;
     public float move_speed;
     public Vector2 ground_raycast_spawn;
@@ -36,7 +38,7 @@ public class EnemyBehavior : MonoBehaviour
             if (ground_hit.collider == null)
             {
                 direction = !direction;
-            }else if (ground_hit.collider.tag != "Ground")
+            }else if (ground_hit.collider.tag != "Ground" && ground_hit.collider.tag != "Conveyor")
             {
                 direction = !direction;
             }
@@ -60,13 +62,13 @@ public class EnemyBehavior : MonoBehaviour
             {
                 direction = !direction;
             }
-            else if (ground_hit.collider.tag != "Ground")
+            else if (ground_hit.collider.tag != "Ground" && ground_hit.collider.tag != "Conveyor")
             {
                 direction = !direction;
             }
             if (enemy_hit.collider != null)
             {
-                if (enemy_hit.collider.tag == "Hazards" || enemy_hit.collider.tag == "Ground")
+                if (enemy_hit.collider.tag == "Enemy" || enemy_hit.collider.tag == "Ground")
                 {
                     direction = !direction;
                 }
@@ -76,12 +78,34 @@ public class EnemyBehavior : MonoBehaviour
         if (!direction)
         {
             rend.flipX = false;
-            rb.velocity = new Vector2(move_speed, rb.velocity.y);
+            switch (conveyor_state)
+            {
+                case 0:
+                    rb.velocity = new Vector2(move_speed, rb.velocity.y);
+                    break;
+                case 1:
+                    rb.velocity = new Vector2(move_speed + conveyor_speed, rb.velocity.y);
+                    break;
+                case 2:
+                    rb.velocity = new Vector2(move_speed - conveyor_speed, rb.velocity.y);
+                    break;
+            }
         }
         else
         {
             rend.flipX = true;
-            rb.velocity = new Vector2(-move_speed, rb.velocity.y);
+            switch (conveyor_state)
+            {
+                case 0:
+                    rb.velocity = new Vector2(-move_speed, rb.velocity.y);
+                    break;
+                case 1:
+                    rb.velocity = new Vector2(-move_speed + conveyor_speed, rb.velocity.y);
+                    break;
+                case 2:
+                    rb.velocity = new Vector2(-move_speed - conveyor_speed, rb.velocity.y);
+                    break;
+            }
         }
     }
 
