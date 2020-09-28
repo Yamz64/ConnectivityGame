@@ -43,7 +43,7 @@ public class MoveablePlatformBehavior : ToggleItemParent
         if(other.tag == "Little One" || other.tag == "Big One" || other.tag == "Box" || other.tag == "BreakableBox")
         {
             other.gameObject.transform.parent = gameObject.transform;
-            if (jump)
+            if (jump && (other.tag == "Little One" || other.tag == "Big One"))
             {
                 other.GetComponent<CharacterMovement>().super_lock = true;
                 other.GetComponent<CharacterMovement>().super_jump = true;
@@ -56,7 +56,7 @@ public class MoveablePlatformBehavior : ToggleItemParent
         if (other.tag == "Little One" || other.tag == "Big One" || other.tag == "Box" || other.tag == "BreakableBox")
         {
             other.gameObject.transform.parent = null;
-            if (jump)
+            if (jump && (other.tag == "Little One" || other.tag == "Big One"))
             {
                 other.GetComponent<CharacterMovement>().super_lock = false;
                 other.GetComponent<CharacterMovement>().super_jump = true;
