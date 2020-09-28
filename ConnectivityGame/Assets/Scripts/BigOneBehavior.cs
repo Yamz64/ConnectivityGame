@@ -301,7 +301,7 @@ public class BigOneBehavior : CharacterMovement
 
             ThrowHandler();
             Animate();
-            if (stop_grab) { EscapeHandler(); }
         }
+        if (stop_grab) { EscapeHandler(); }
     }
 }
