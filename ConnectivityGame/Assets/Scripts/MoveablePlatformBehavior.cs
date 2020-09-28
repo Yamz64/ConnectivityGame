@@ -40,7 +40,7 @@ public class MoveablePlatformBehavior : ToggleItemParent
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Little One" || other.tag == "Big One" || other.tag == "Box" || other.tag == "BreakableBox")
+        if(other.tag == "Little One" || other.tag == "Big One" || other.tag == "Box" || other.tag == "BreakableBox" || other.tag == "Enemy")
         {
             other.gameObject.transform.parent = gameObject.transform;
             if (jump && (other.tag == "Little One" || other.tag == "Big One"))
@@ -53,7 +53,7 @@ public class MoveablePlatformBehavior : ToggleItemParent
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Little One" || other.tag == "Big One" || other.tag == "Box" || other.tag == "BreakableBox")
+        if (other.tag == "Little One" || other.tag == "Big One" || other.tag == "Box" || other.tag == "BreakableBox" || other.tag == "Enemy")
         {
             other.gameObject.transform.parent = null;
             if (jump && (other.tag == "Little One" || other.tag == "Big One"))

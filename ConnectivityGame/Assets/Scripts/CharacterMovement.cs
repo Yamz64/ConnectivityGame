@@ -113,7 +113,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Hazards")
+        if(other.tag == "Hazards" || other.tag == "Enemy")
         {
             Die();
         }

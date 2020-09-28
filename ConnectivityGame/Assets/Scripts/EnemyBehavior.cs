@@ -66,7 +66,7 @@ public class EnemyBehavior : MonoBehaviour
             }
             if (enemy_hit.collider != null)
             {
-                if (enemy_hit.collider.tag == "Hazards" || enemy_hit.collider.tag == "Ground")
+                if (enemy_hit.collider.tag == "Enemy" || enemy_hit.collider.tag == "Ground")
                 {
                     direction = !direction;
                 }
