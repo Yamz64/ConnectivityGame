@@ -10,6 +10,7 @@ TagManager:
   - PlayerSpawner
   - BreakableBox
   - Hazards
+  - Ground
   layers:
   - Default
   - TransparentFX
