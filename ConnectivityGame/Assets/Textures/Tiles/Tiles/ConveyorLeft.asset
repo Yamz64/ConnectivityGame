@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e946ab1f041bac49a5029ca2af7a72c, type: 3}
-  m_Name: ConveyorBelt
+  m_Name: ConveyorLeft
   m_EditorClassIdentifier: 
-  m_AnimatedSprites: []
-  m_MinSpeed: 1
-  m_MaxSpeed: 1
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: e7b9f927f99e4d44987ef7c3b2c0d37d, type: 3}
+  - {fileID: 21300000, guid: 02119b168a73a4b478827652942703e8, type: 3}
+  - {fileID: 21300000, guid: 1c573e0b0ee74184e80093dcb6386ea2, type: 3}
+  - {fileID: 21300000, guid: 12f173aa71d938444a1faebf1cb25ca3, type: 3}
+  m_MinSpeed: 6
+  m_MaxSpeed: 6
   m_AnimationStartTime: 0
-  m_TileColliderType: 0
+  m_TileColliderType: 2

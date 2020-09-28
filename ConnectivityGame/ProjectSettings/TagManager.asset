@@ -11,6 +11,8 @@ TagManager:
   - BreakableBox
   - Hazards
   - Ground
+  - Enemy
+  - Conveyor
   layers:
   - Default
   - TransparentFX
