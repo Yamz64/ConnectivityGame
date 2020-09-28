@@ -20,6 +20,7 @@ public class LittleOneBehavior : CharacterMovement
                 extra_jump = true;
                 used_extra_jump = false;
                 jump_timer = GetMaxJump();
+                if (!super_lock) super_jump = false;
             }
 
             //jump is inputted
@@ -28,7 +29,21 @@ public class LittleOneBehavior : CharacterMovement
                 if (jump_timer > 0.0f)
                 {
                     jump_timer -= 1.0f * Time.deltaTime;
-                    GetRB().velocity = new Vector2(GetRB().velocity.x, jump_speed);
+                    if (!super_jump)
+                    {
+                        GetRB().velocity = new Vector2(GetRB().velocity.x, jump_speed);
+                    }
+                    else
+                    {
+                        if (extra_jump)
+                        {
+                            GetRB().velocity = new Vector2(GetRB().velocity.x, super_jump_speed);
+                        }
+                        else
+                        {
+                            GetRB().velocity = new Vector2(GetRB().velocity.x, jump_speed);
+                        }
+                    }
                 }
                 if (!extra_jump) used_extra_jump = true;
             }

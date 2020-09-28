@@ -11,11 +11,14 @@ public class CharacterMovement : MonoBehaviour
 
     public float move_speed;
     public float jump_speed;
+    public float super_jump_speed;
     public float jump_timer;
     public float gravity_scale;
     public bool can_jump;
     public bool grounded = false;
     public bool flipped;
+    public bool super_jump;
+    public bool super_lock;
 
     private float max_jump_timer;
     private Rigidbody2D rb;
@@ -33,6 +36,7 @@ public class CharacterMovement : MonoBehaviour
             if (grounded)
             {
                 jump_timer = max_jump_timer;
+                if (!super_lock) super_jump = false;
             }
 
             //jump is inputted
@@ -41,7 +45,14 @@ public class CharacterMovement : MonoBehaviour
                 if (jump_timer > 0.0f)
                 {
                     jump_timer -= 1.0f * Time.deltaTime;
-                    rb.velocity = new Vector2(rb.velocity.x, jump_speed);
+                    if (!super_jump)
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x, jump_speed);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x, super_jump_speed);
+                    }
                 }
             }
             //Jump is released

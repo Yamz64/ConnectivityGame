@@ -229,16 +229,21 @@ MonoBehaviour:
   network_action: 0
   move_speed: 4
   jump_speed: 6
+  super_jump_speed: 11
   jump_timer: 0.2
   gravity_scale: 4
   can_jump: 1
   grounded: 0
   flipped: 0
+  super_jump: 0
+  super_lock: 0
+  stop_grab: 0
   horizontal_grabrange: 1.1
   vertical_grabrange: 1.5
   throw_force: 300
   vertical_coefficient: 2.5
   transition_threshold: 3
+  held_object: {fileID: 0}
 --- !u!114 &7060170881166267553
 MonoBehaviour:
   m_ObjectHideFlags: 0
