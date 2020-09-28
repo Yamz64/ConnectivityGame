@@ -49,7 +49,7 @@ public class ConveyorBehavior : ToggleItemParent
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if(other.gameObject.tag == "Little One" || other.gameObject.tag == "Big One")
         {
