@@ -27,11 +27,11 @@ public class MoveablePlatformBehavior : ToggleItemParent
             StopAllCoroutines();
             if (toggled)
             {
-                StartCoroutine(MoveToPosition(speed, off_position, on_position));
+                StartCoroutine(MoveToPosition(speed, transform.position, on_position));
             }
             else
             {
-                StartCoroutine(MoveToPosition(speed, on_position, off_position));
+                StartCoroutine(MoveToPosition(speed, transform.position, off_position));
             }
         }
         last_toggle = toggled;
