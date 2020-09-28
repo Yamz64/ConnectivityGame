@@ -12,7 +12,6 @@ public class BreakableBoxBehavior : MonoBehaviour
         {
             if (other.gameObject.tag != "Big One")
             {
-                if (transform.root != null) Destroy(transform.root.gameObject);
                 Destroy(gameObject);
             }
         }
