@@ -32,6 +32,7 @@ public class EnemyBehavior : MonoBehaviour
             RaycastHit2D enemy_hit = Physics2D.Raycast(forward_raycast_spawn + new Vector2(transform.position.x, transform.position.y), Vector2.right, raycast_distance);
             Debug.DrawRay(ground_raycast_spawn + new Vector2(transform.position.x, transform.position.y), Vector2.down * raycast_distance, Color.red, .5f);
             Debug.DrawRay(forward_raycast_spawn + new Vector2(transform.position.x, transform.position.y), Vector2.right * raycast_distance, Color.blue, .5f);
+
             if (ground_hit.collider == null)
             {
                 direction = !direction;
@@ -54,6 +55,7 @@ public class EnemyBehavior : MonoBehaviour
             RaycastHit2D enemy_hit = Physics2D.Raycast(new Vector2(-forward_raycast_spawn.x, forward_raycast_spawn.y) + new Vector2(transform.position.x, transform.position.y), Vector2.left, raycast_distance);
             Debug.DrawRay(new Vector2(-ground_raycast_spawn.x, ground_raycast_spawn.y) + new Vector2(transform.position.x, transform.position.y), Vector2.down * raycast_distance, Color.red, .5f);
             Debug.DrawRay(new Vector2(-forward_raycast_spawn.x, forward_raycast_spawn.y) + new Vector2(transform.position.x, transform.position.y), Vector2.left * raycast_distance, Color.blue, .5f);
+
             if (ground_hit.collider == null)
             {
                 direction = !direction;
@@ -80,6 +82,14 @@ public class EnemyBehavior : MonoBehaviour
         {
             rend.flipX = true;
             rb.velocity = new Vector2(-move_speed, rb.velocity.y);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Big One" || other.tag == "Little One")
+        {
+            other.GetComponent<CharacterMovement>().Die();
         }
     }
 }
