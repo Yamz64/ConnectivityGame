@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ConveyorBehavior : ToggleItemParent
 {
+    public float box_dampen;
     public float conveyor_speed;
     public bool direction;  //direction false = right, direction true = left
 
     public void AddForce(Rigidbody2D other, bool player = false)
     {
+        if (box_dampen == 0f) box_dampen = 1f;
         if (player)
         {
             other.GetComponent<CharacterMovement>().conveyor_speed = conveyor_speed;
@@ -39,11 +41,11 @@ public class ConveyorBehavior : ToggleItemParent
             {
                 if (!direction)
                 {
-                    other.velocity += Vector2.right * conveyor_speed;
+                    other.velocity += Vector2.right * conveyor_speed/box_dampen;
                 }
                 else
                 {
-                    other.velocity += Vector2.left * conveyor_speed;
+                    other.velocity += Vector2.left * conveyor_speed/box_dampen;
                 }
             }
         }
