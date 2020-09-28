@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LittleOneBehavior : CharacterMovement
 {
+    public bool active;
     public float transition_threshold;
     public bool held;
     public bool extra_jump;
@@ -117,17 +118,20 @@ public class LittleOneBehavior : CharacterMovement
     // Update is called once per frame
     new void Update()
     {
-        if (!held)
+        if (active)
         {
-            base.Update();
-        }
-        else
-        {
-            network_vertical = Input.GetAxis("Vertical");
-            if (network_vertical > 0.0f) GameObject.FindGameObjectWithTag("Big One").GetComponent<BigOneBehavior>().stop_grab = true;
-        }
+            if (!held)
+            {
+                base.Update();
+            }
+            else
+            {
+                network_vertical = Input.GetAxis("Vertical");
+                if (network_vertical > 0.0f) GameObject.FindGameObjectWithTag("Big One").GetComponent<BigOneBehavior>().stop_grab = true;
+            }
 
-        if (grounded) held = false;
-        Animate();
+            if (grounded) held = false;
+            Animate();
+        }
     }
 }

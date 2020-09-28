@@ -237,6 +237,7 @@ MonoBehaviour:
   flipped: 0
   super_jump: 0
   super_lock: 0
+  active: 1
   stop_grab: 0
   horizontal_grabrange: 1.1
   vertical_grabrange: 1.5

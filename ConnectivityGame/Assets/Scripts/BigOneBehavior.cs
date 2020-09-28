@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BigOneBehavior : CharacterMovement
 {
+    public bool active;
     public bool stop_grab;
     public float horizontal_grabrange;
     public float vertical_grabrange;
@@ -273,21 +274,24 @@ public class BigOneBehavior : CharacterMovement
 
     new void Update()
     {
-        base.Update();
-        //handle flipping the held object
-        if (flipped)
+        if (active)
         {
-            held_object_position.transform.localPosition = new Vector3(-held_object_transform.x, held_object_transform.y, held_object_transform.z);
-            thrown_object_position.transform.localPosition = new Vector3(-thrown_object_transform.x, thrown_object_transform.y, thrown_object_transform.z);
-        }
-        else
-        {
-            held_object_position.transform.localPosition = new Vector3(held_object_transform.x, held_object_transform.y, held_object_transform.z);
-            thrown_object_position.transform.localPosition = new Vector3(thrown_object_transform.x, thrown_object_transform.y, thrown_object_transform.z);
-        }
+            base.Update();
+            //handle flipping the held object
+            if (flipped)
+            {
+                held_object_position.transform.localPosition = new Vector3(-held_object_transform.x, held_object_transform.y, held_object_transform.z);
+                thrown_object_position.transform.localPosition = new Vector3(-thrown_object_transform.x, thrown_object_transform.y, thrown_object_transform.z);
+            }
+            else
+            {
+                held_object_position.transform.localPosition = new Vector3(held_object_transform.x, held_object_transform.y, held_object_transform.z);
+                thrown_object_position.transform.localPosition = new Vector3(thrown_object_transform.x, thrown_object_transform.y, thrown_object_transform.z);
+            }
 
-        ThrowHandler();
-        Animate();
-        if (stop_grab) { EscapeHandler(); }
+            ThrowHandler();
+            Animate();
+            if (stop_grab) { EscapeHandler(); }
+        }
     }
 }

@@ -205,6 +205,7 @@ MonoBehaviour:
   flipped: 0
   super_jump: 0
   super_lock: 0
+  active: 1
   transition_threshold: 3
   held: 0
   extra_jump: 0
