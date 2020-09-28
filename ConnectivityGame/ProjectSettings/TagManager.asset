@@ -8,6 +8,7 @@ TagManager:
   - Big One
   - Little One
   - PlayerSpawner
+  - BreakableBox
   layers:
   - Default
   - TransparentFX
