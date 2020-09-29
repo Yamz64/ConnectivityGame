@@ -5,10 +5,15 @@ using Mirror;
 
 public class DrawLine : MonoBehaviour
 {
+    public bool controller_mode;
     public float chalk_amount;
     public float chalk_loss;
 
     private float max_chalk;
+
+    public GameObject draw_cursor;
+
+    public Vector2 clampbounds;
 
     public Object line_prefab;
 
@@ -25,7 +30,12 @@ public class DrawLine : MonoBehaviour
     private void Start()
     {
         lines = new List<GameObject>();
+        sound.volume = PlayerPrefs.GetFloat("SFX Volume");
         max_chalk = chalk_amount;
+        if (!controller_mode)
+        {
+            draw_cursor.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -33,37 +43,77 @@ public class DrawLine : MonoBehaviour
     {
         //if (isLocalPlayer)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (!controller_mode)
             {
-                if (!sound.isPlaying && chalk_amount > 0.0f)
-                    sound.Play();
-                CreateLine();
-            }
-            if (Input.GetMouseButton(0))
-            {
-                Vector2 temp_mouse_pos = drawing_camera.ScreenToWorldPoint(Input.mousePosition);
-                if (Vector2.Distance(temp_mouse_pos, mouse_positions[mouse_positions.Count - 1]) > .1f)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if(chalk_amount > 0.0f)
-                    UpdateLine(temp_mouse_pos);
+                    if (!sound.isPlaying && chalk_amount > 0.0f)
+                        sound.Play();
+                    CreateLine();
+                }
+                if (Input.GetMouseButton(0))
+                {
+                    Vector2 temp_mouse_pos = drawing_camera.ScreenToWorldPoint(Input.mousePosition);
+                    if (Vector2.Distance(temp_mouse_pos, mouse_positions[mouse_positions.Count - 1]) > .1f)
+                    {
+                        if (chalk_amount > 0.0f)
+                            UpdateLine(temp_mouse_pos);
+                    }
+                }
+                if (chalk_amount < 0.0f) chalk_amount = 0.0f;
+
+                //clear all lines and restore chalk
+                if (Input.GetMouseButtonDown(1))
+                {
+                    chalk_amount = max_chalk;
+                    for (int i = 0; i < lines.Count; i++)
+                    {
+                        Destroy(lines[i].gameObject);
+                    }
+                    lines.Clear();
+                }
+
+                if (Input.GetMouseButtonUp(0) || chalk_amount <= 0.0f)
+                {
+                    sound.Stop();
                 }
             }
-            if (chalk_amount < 0.0f) chalk_amount = 0.0f;
-
-            //clear all lines and restore chalk
-            if (Input.GetMouseButtonDown(1))
+            else
             {
-                chalk_amount = max_chalk;
-                for(int i=0; i<lines.Count; i++)
+                draw_cursor.transform.position += new Vector3(Input.GetAxis("JoyRightHorizontal") / .2f, Input.GetAxis("JoyRightVertical")/ .2f);
+
+                if (Input.GetButtonDown("JoyDraw"))
                 {
-                    Destroy(lines[i].gameObject);
+                    if (!sound.isPlaying && chalk_amount > 0.0f)
+                        sound.Play();
+                    CreateLine();
                 }
-                lines.Clear();
-            }
+                if (Input.GetButton("JoyDraw"))
+                {
+                    Vector2 temp_mouse_pos = draw_cursor.transform.position;
+                    if (Vector2.Distance(temp_mouse_pos, mouse_positions[mouse_positions.Count - 1]) > .1f)
+                    {
+                        if (chalk_amount > 0.0f)
+                            UpdateLine(temp_mouse_pos);
+                    }
+                }
+                if (chalk_amount < 0.0f) chalk_amount = 0.0f;
 
-            if (Input.GetMouseButtonUp(0) || chalk_amount <= 0.0f)
-            {
-                sound.Stop();
+                //clear all lines and restore chalk
+                if (Input.GetButtonDown("JoyErase"))
+                {
+                    chalk_amount = max_chalk;
+                    for (int i = 0; i < lines.Count; i++)
+                    {
+                        Destroy(lines[i].gameObject);
+                    }
+                    lines.Clear();
+                }
+
+                if (Input.GetButtonUp("JoyDraw") || chalk_amount <= 0.0f)
+                {
+                    sound.Stop();
+                }
             }
         }
     }
@@ -73,8 +123,8 @@ public class DrawLine : MonoBehaviour
         GameObject current_line = (GameObject)Instantiate(line_prefab, Vector3.zero, Quaternion.identity);
         line_renderer = current_line.GetComponent<LineRenderer>();
         mouse_positions.Clear();
-        mouse_positions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        mouse_positions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.up * .1f);
+        mouse_positions.Add(drawing_camera.ScreenToWorldPoint(Input.mousePosition));
+        mouse_positions.Add(drawing_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.up * .1f);
         line_renderer.SetPosition(0, mouse_positions[0]);
         line_renderer.SetPosition(1, mouse_positions[1]);
         lines.Add(current_line);

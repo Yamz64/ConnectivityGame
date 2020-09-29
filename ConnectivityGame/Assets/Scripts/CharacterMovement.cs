@@ -217,7 +217,7 @@ public class CharacterMovement : MonoBehaviour
         //Interp Cam
         if (!controller_mode)
         {
-            if (Input.GetKeyDown("KeyCode.C")) cam_mode = !cam_mode;
+            if (Input.GetKeyDown(KeyCode.C)) cam_mode = !cam_mode;
         }
         else
         {

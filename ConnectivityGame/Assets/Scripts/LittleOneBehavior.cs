@@ -163,6 +163,7 @@ public class LittleOneBehavior : CharacterMovement
         used_extra_jump = false;
 
         anim = GetComponent<Animator>();
+        if(Display.displays.Length > 0)
         Display.displays[1].Activate();
     }
 
