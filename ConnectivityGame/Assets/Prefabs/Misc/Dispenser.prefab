@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4547939059676284464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.72, y: 1.93, z: -5.66805}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4547939059753732586}
   m_Father: {fileID: 0}
@@ -119,7 +119,7 @@ MonoBehaviour:
   spawn_amount: 6
   toggle: 0
   mode: 0
-  offset: {x: 0, y: -0.5}
+  offset: {x: 0, y: -1}
   spawned: []
   spawnables:
   - {fileID: 9203301270702098772, guid: 5b4889f9764390d4095a003516af6d76, type: 3}

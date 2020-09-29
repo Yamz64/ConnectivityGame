@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2189c8ca360ef264fa492ab0d3d66e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibility_duration: 5
+  invincibility_duration: 10
 --- !u!95 &5997939352936810973
 Animator:
   serializedVersion: 3

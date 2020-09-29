@@ -191,7 +191,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8b60ebbf117c14593eaf6e1cb8b46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conveyor_state: 0
   direction: 0
+  conveyor_speed: 0
   raycast_distance: 0.1
   move_speed: 1.5
   ground_raycast_spawn: {x: 0.75, y: -0.9}

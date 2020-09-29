@@ -847,7 +847,7 @@ Transform:
   - {fileID: 1004596661}
   - {fileID: 960689712}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &440647205
 PrefabInstance:
@@ -2308,7 +2308,7 @@ GameObject:
   - component: {fileID: 1004596664}
   m_Layer: 0
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
