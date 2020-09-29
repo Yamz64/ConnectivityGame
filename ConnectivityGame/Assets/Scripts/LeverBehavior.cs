@@ -20,6 +20,7 @@ public class LeverBehavior : MonoBehaviour
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
         source = GetComponent<AudioSource>();
+        source.volume = PlayerPrefs.GetFloat("SFX Volume");
         rend.color = lever_color;
         activated = false;
         if(affected_object != null)

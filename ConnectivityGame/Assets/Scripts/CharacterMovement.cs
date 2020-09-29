@@ -149,6 +149,10 @@ public class CharacterMovement : MonoBehaviour
 
         sprite = GetComponent<SpriteRenderer>();
         sounds = GetComponents<AudioSource>();
+        foreach(AudioSource sound in sounds)
+        {
+            sound.volume = PlayerPrefs.GetFloat("SFX Volume");
+        }
         cam.transform.parent = null;
     }
 

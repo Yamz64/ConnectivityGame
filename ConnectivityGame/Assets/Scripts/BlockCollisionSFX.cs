@@ -10,6 +10,7 @@ public class BlockCollisionSFX : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
+        source.volume = PlayerPrefs.GetFloat("SFX Volume");
     }
 
     private void OnCollisionEnter2D(Collision2D other)

@@ -16,6 +16,8 @@ TagManager:
   - Teleporter
   - TeleporterBox
   - LevelCam
+  - MusicSlider
+  - SFXSlider
   layers:
   - Default
   - TransparentFX

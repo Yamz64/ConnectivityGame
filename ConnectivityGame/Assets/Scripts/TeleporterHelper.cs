@@ -8,7 +8,7 @@ public class TeleporterHelper : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Big One" || other.tag == "Little One" || other.tag == "Box" || other.tag == "BreakableBox")
+        if(other.tag == "Big One" || other.tag == "Little One" || other.tag == "Box" || other.tag == "BreakableBox" || other.tag == "TeleporterBox")
         {
             teleported_object = other.gameObject;
         }
@@ -16,7 +16,7 @@ public class TeleporterHelper : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag == "Big One" || other.tag == "Little One" || other.tag == "Box" || other.tag == "BreakableBox")
+        if(other.tag == "Big One" || other.tag == "Little One" || other.tag == "Box" || other.tag == "BreakableBox" || other.tag == "TeleporterBox")
         {
             teleported_object = null;
         }
