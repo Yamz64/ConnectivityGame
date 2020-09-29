@@ -1563,6 +1563,14 @@ PrefabInstance:
       propertyPath: next_scene_name
       value: Level 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8159184042291781638, guid: 9bec8d8c44ae70946a22aeb3083f8303, type: 3}
+      propertyPath: completed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159184042291781638, guid: 9bec8d8c44ae70946a22aeb3083f8303, type: 3}
+      propertyPath: drawing_name
+      value: Drawing2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bec8d8c44ae70946a22aeb3083f8303, type: 3}
 --- !u!1001 &1042434865
