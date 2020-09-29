@@ -164,5 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a46d3be0d668c74f9447134bc3d20ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 1
+  delay: 0.3
   teleported_Object: {fileID: 0}

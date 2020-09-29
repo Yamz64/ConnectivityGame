@@ -115,6 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c39581413637947b3bbedbca3247b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.2
-  launch_speed: 3
+  delay: 0.9
+  launch_speed: 7
   Arrow: {fileID: 2535881758735152036, guid: 960b490785729c643a81876cf2e4c748, type: 3}
