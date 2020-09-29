@@ -6,7 +6,7 @@ public class TeleporterHelper : MonoBehaviour
 {
     public GameObject teleported_object;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if(other.tag == "Big One" || other.tag == "Little One" || other.tag == "Box" || other.tag == "BreakableBox")
         {
