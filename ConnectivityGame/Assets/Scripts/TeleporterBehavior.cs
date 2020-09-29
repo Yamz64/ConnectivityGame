@@ -36,7 +36,6 @@ public class TeleporterBehavior : MonoBehaviour
                     if (Input.GetButtonDown("Action"))
                     {
                         a.teleported_object.transform.position = teleporter_b.transform.position;
-                        last_teleported_object = a.teleported_object;
                     }
                 }
                 else
@@ -55,7 +54,6 @@ public class TeleporterBehavior : MonoBehaviour
                     if (Input.GetButtonDown("Action"))
                     {
                         b.teleported_object.transform.position = teleporter_a.transform.position;
-                        last_teleported_object = b.teleported_object;
                     }
                 }
                 else
