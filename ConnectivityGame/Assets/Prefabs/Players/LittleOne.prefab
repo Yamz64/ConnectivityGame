@@ -552,11 +552,13 @@ MonoBehaviour:
   jump_timer: 0.1
   gravity_scale: 3
   camera_speed: 10
+  controller_mode: 0
   can_jump: 1
   grounded: 0
   flipped: 0
   super_jump: 0
   super_lock: 0
+  cam_mode: 0
   cam: {fileID: 7164261506569777637}
   active: 1
   transition_threshold: 3
@@ -581,3 +583,4 @@ MonoBehaviour:
   line_prefab: {fileID: 4690644615950534369, guid: a42663ac64cc9184193609d9aa47e837, type: 3}
   sound: {fileID: -1910780052019715490}
   mouse_positions: []
+  drawing_camera: {fileID: 7164261506569777637}

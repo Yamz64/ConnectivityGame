@@ -18,6 +18,8 @@ public class DrawLine : MonoBehaviour
 
     public List<Vector2> mouse_positions;
 
+    public Camera drawing_camera;
+
     private List<GameObject> lines;
 
     private void Start()
@@ -39,7 +41,7 @@ public class DrawLine : MonoBehaviour
             }
             if (Input.GetMouseButton(0))
             {
-                Vector2 temp_mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 temp_mouse_pos = drawing_camera.ScreenToWorldPoint(Input.mousePosition);
                 if (Vector2.Distance(temp_mouse_pos, mouse_positions[mouse_positions.Count - 1]) > .1f)
                 {
                     if(chalk_amount > 0.0f)
