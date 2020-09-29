@@ -661,10 +661,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1f5cbc0aff59e47a95feb24927c327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infinite_draw: 0
   controller_mode: 1
   chalk_amount: 200
   chalk_loss: 1
   draw_cursor: {fileID: 1094833690888631800}
+  clampbounds: {x: 6, y: 4}
   line_prefab: {fileID: 4690644615950534369, guid: a42663ac64cc9184193609d9aa47e837, type: 3}
   sound: {fileID: -1910780052019715490}
   mouse_positions: []

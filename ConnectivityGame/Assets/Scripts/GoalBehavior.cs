@@ -35,10 +35,10 @@ public class GoalBehavior : MonoBehaviour
             GameObject hazards = GameObject.FindGameObjectWithTag("Hazards");
             GameObject conveyor = GameObject.FindGameObjectWithTag("Conveyor");
 
+            if(all_tiles != null)
             all_tiles.GetComponent<Tilemap>().color = new Color(1, 1, 1, 0);
+            if(all_tiles != null)
             hazards.GetComponent<Tilemap>().color = new Color(1, 1, 1, 0);
-            conveyor.GetComponent<Tilemap>().color = new Color(1, 1, 1, 0);
-
             completed = true;
         }
         else
@@ -61,13 +61,13 @@ public class GoalBehavior : MonoBehaviour
                 StartCoroutine(Victory_Sequence());
                 bang = true;
             }
-            if (completed)
+        }
+        if (completed)
+        {
+            if (Input.GetButtonDown("Action"))
             {
-                if (Input.GetButtonDown("Action"))
-                {
-                    ScreenCapture.CaptureScreenshot(Application.dataPath + "/Resources/Drawings" + drawing_name);
-                    SceneManager.LoadScene(next_scene_name);
-                }
+                ScreenCapture.CaptureScreenshot(Application.dataPath + "/Resources/Drawings" + drawing_name);
+                SceneManager.LoadScene(next_scene_name);
             }
         }
     }

@@ -178,7 +178,7 @@ public class LittleOneBehavior : CharacterMovement
             }
             else
             {
-                network_vertical = Input.GetAxis("Vertical");
+                network_vertical = Input.GetAxis("JoyJump");
                 if (network_vertical > 0.0f) GameObject.FindGameObjectWithTag("Big One").GetComponent<BigOneBehavior>().stop_grab = true;
             }
 
