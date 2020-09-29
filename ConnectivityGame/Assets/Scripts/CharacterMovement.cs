@@ -19,11 +19,14 @@ public class CharacterMovement : MonoBehaviour
     public float super_jump_speed;
     public float jump_timer;
     public float gravity_scale;
+    public float camera_speed;
     public bool can_jump;
     public bool grounded = false;
     public bool flipped;
     public bool super_jump;
     public bool super_lock;
+    public Camera cam;
+
 
     private float max_jump_timer;
     private bool invincible;
@@ -41,6 +44,18 @@ public class CharacterMovement : MonoBehaviour
         invincible = true;
         yield return new WaitForSeconds(duration);
         invincible = false;
+    }
+
+    IEnumerator LerpCam()
+    {
+        float current_time = 0;
+        while(current_time != 1)
+        {
+            current_time += camera_speed / 60f;
+            yield return new WaitForSeconds(1 / 60f);
+            if (current_time > 1.0f) current_time = 1.0f;
+            cam.transform.position = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, transform.position.y, Mathf.Abs(cam.transform.position.y - transform.position.y) * current_time), cam.transform.position.z);
+        }
     }
 
     public void MakeInvincible(float duration)
@@ -103,6 +118,7 @@ public class CharacterMovement : MonoBehaviour
 
         sprite = GetComponent<SpriteRenderer>();
         sounds = GetComponents<AudioSource>();
+        cam.transform.parent = null;
     }
 
     // Update is called once per frame
@@ -153,6 +169,11 @@ public class CharacterMovement : MonoBehaviour
         {
             sprite.color = Color.white;
         }
+
+        //Interp Cam
+        cam.transform.position = new Vector3(transform.position.x, cam.transform.position.y, -10f);
+        StopCoroutine(LerpCam());
+        StartCoroutine(LerpCam());
     }
 
     private void OnTriggerEnter2D(Collider2D other)
