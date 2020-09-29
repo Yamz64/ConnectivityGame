@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 892098473066235553}
   - component: {fileID: 892098473066235580}
   - component: {fileID: 892098473066235555}
+  - component: {fileID: 210046560207874135}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 97eb0b47a2b95a241b4b6161c9cb1204, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8c39b4828f04946469aaad8772a0dc9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8828125, y: 0.87109375}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.8828125, y: 0.87109375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -125,3 +126,22 @@ MonoBehaviour:
   in_trigger: 0
   color: {r: 0, g: 1, b: 0.054290295, a: 1}
   affected: {fileID: 0}
+--- !u!95 &210046560207874135
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892098473066235552}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 525320907620cb24d813d5e8b7657dbf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
