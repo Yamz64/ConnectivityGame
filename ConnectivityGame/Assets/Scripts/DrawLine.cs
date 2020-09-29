@@ -80,7 +80,8 @@ public class DrawLine : MonoBehaviour
             }
             else
             {
-                draw_cursor.transform.position += new Vector3(Input.GetAxis("JoyRightHorizontal") / .2f, Input.GetAxis("JoyRightVertical")/ .2f);
+                draw_cursor.transform.position += new Vector3(Input.GetAxis("JoyRightHorizontal") * .25f, Input.GetAxis("JoyRightVertical") * .25f);
+                draw_cursor.transform.localPosition = Vector3.ClampMagnitude(draw_cursor.transform.localPosition, clampbounds.magnitude);
 
                 if (Input.GetButtonDown("JoyDraw"))
                 {
@@ -123,8 +124,8 @@ public class DrawLine : MonoBehaviour
         GameObject current_line = (GameObject)Instantiate(line_prefab, Vector3.zero, Quaternion.identity);
         line_renderer = current_line.GetComponent<LineRenderer>();
         mouse_positions.Clear();
-        mouse_positions.Add(drawing_camera.ScreenToWorldPoint(Input.mousePosition));
-        mouse_positions.Add(drawing_camera.ScreenToWorldPoint(Input.mousePosition) + Vector3.up * .1f);
+        mouse_positions.Add(draw_cursor.transform.position);
+        mouse_positions.Add(draw_cursor.transform.position + Vector3.up * .1f);
         line_renderer.SetPosition(0, mouse_positions[0]);
         line_renderer.SetPosition(1, mouse_positions[1]);
         lines.Add(current_line);
