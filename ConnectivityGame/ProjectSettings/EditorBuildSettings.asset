@@ -8,4 +8,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PhysicsTest.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Level 1 (Remake).unity
+    guid: dc3779ecb0d75aa48bb5ed2ad616ed57
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 1aed715d974efe54691d15df58d2d68d
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: ba5f51b9f86d2a945834226d7eb3a236
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: 47cb81d05381cc64abf4a5cad7ab9ba9
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: 59cd3b728c60f5f4399a9a8560719a84
+  - enabled: 1
+    path: Assets/Scenes/Level 6.unity
+    guid: 864b6d2d2eaf39b4f902117398c21b80
   m_configObjects: {}
