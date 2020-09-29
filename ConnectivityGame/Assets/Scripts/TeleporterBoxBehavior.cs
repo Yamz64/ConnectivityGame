@@ -10,8 +10,7 @@ public class TeleporterBoxBehavior : MonoBehaviour
     IEnumerator Teleport_Routine()
     {
         yield return new WaitForSeconds(delay);
-        teleported_Object.transform.position = transform.position;
-        Destroy(gameObject);
+        teleported_Object.transform.position = transform.position + Vector3.up * 1.0f;
     }
 
     public void Teleport()
