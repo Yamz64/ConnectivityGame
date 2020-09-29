@@ -7,6 +7,7 @@ public class LauncherBehavior : ButtonParent
     public float delay;
     public float launch_speed;
     public Object Arrow;
+    
 
     private float max_delay;
 
