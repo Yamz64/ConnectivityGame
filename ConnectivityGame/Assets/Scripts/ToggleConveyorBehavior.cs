@@ -23,11 +23,10 @@ public class ToggleConveyorBehavior : ConveyorBehavior
 
     private void Update()
     {
-        if(toggled)
+        if(toggled != direction)
         {
-            direction = !direction;
+            direction = toggled;
             RefreshTiles();
-            toggled = false;
         }
     }
 
