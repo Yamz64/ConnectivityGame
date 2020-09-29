@@ -66,7 +66,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -552,7 +552,7 @@ MonoBehaviour:
   jump_timer: 0.1
   gravity_scale: 3
   camera_speed: 10
-  controller_mode: 0
+  controller_mode: 1
   can_jump: 1
   grounded: 0
   flipped: 0

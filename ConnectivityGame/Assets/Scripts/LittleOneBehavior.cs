@@ -163,6 +163,7 @@ public class LittleOneBehavior : CharacterMovement
         used_extra_jump = false;
 
         anim = GetComponent<Animator>();
+        Display.displays[1].Activate();
     }
 
     // Update is called once per frame
