@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
 public class GoalBehavior : MonoBehaviour
 {
     public bool bang;
+    public bool completed;
 
+    public string drawing_name;
     public string next_scene_name;
 
     private bool little_one;
@@ -20,7 +23,23 @@ public class GoalBehavior : MonoBehaviour
         yield return new WaitForSeconds(victory_theme.clip.length);
         if (next_scene_name != "")
         {
-            SceneManager.LoadScene(next_scene_name);
+            GameObject little_one = GameObject.FindGameObjectWithTag("Little One");
+            GameObject big_one = GameObject.FindGameObjectWithTag("Big One");
+            little_one.GetComponent<CharacterMovement>().cam_mode = true;
+            big_one.GetComponent<CharacterMovement>().cam_mode = true;
+            little_one.GetComponent<DrawLine>().clampbounds = Vector2.positiveInfinity;
+            little_one.GetComponent<DrawLine>().draw_cursor.transform.localScale = new Vector3(5, 5, 5);
+            big_one.GetComponent<DrawLine>().infinite_draw = true;
+            little_one.GetComponent<DrawLine>().infinite_draw = true;
+            GameObject all_tiles = GameObject.FindGameObjectWithTag("Ground");
+            GameObject hazards = GameObject.FindGameObjectWithTag("Hazards");
+            GameObject conveyor = GameObject.FindGameObjectWithTag("Conveyor");
+
+            all_tiles.GetComponent<Tilemap>().color = new Color(1, 1, 1, 0);
+            hazards.GetComponent<Tilemap>().color = new Color(1, 1, 1, 0);
+            conveyor.GetComponent<Tilemap>().color = new Color(1, 1, 1, 0);
+
+            completed = true;
         }
         else
         {
@@ -41,6 +60,14 @@ public class GoalBehavior : MonoBehaviour
             {
                 StartCoroutine(Victory_Sequence());
                 bang = true;
+            }
+            if (completed)
+            {
+                if (Input.GetButtonDown("Action"))
+                {
+                    ScreenCapture.CaptureScreenshot(Application.dataPath + "/Resources/Drawings" + drawing_name);
+                    SceneManager.LoadScene(next_scene_name);
+                }
             }
         }
     }

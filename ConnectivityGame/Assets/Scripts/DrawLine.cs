@@ -5,6 +5,7 @@ using Mirror;
 
 public class DrawLine : MonoBehaviour
 {
+    public bool infinite_draw;
     public bool controller_mode;
     public float chalk_amount;
     public float chalk_loss;
@@ -47,7 +48,7 @@ public class DrawLine : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (!sound.isPlaying && chalk_amount > 0.0f)
+                    if (!sound.isPlaying && chalk_amount > 0.0f || infinite_draw)
                         sound.Play();
                     CreateLine();
                 }
@@ -56,7 +57,7 @@ public class DrawLine : MonoBehaviour
                     Vector2 temp_mouse_pos = drawing_camera.ScreenToWorldPoint(Input.mousePosition);
                     if (Vector2.Distance(temp_mouse_pos, mouse_positions[mouse_positions.Count - 1]) > .1f)
                     {
-                        if (chalk_amount > 0.0f)
+                        if (chalk_amount > 0.0f || infinite_draw)
                             UpdateLine(temp_mouse_pos);
                     }
                 }
@@ -85,7 +86,7 @@ public class DrawLine : MonoBehaviour
 
                 if (Input.GetButtonDown("JoyDraw"))
                 {
-                    if (!sound.isPlaying && chalk_amount > 0.0f)
+                    if (!sound.isPlaying && chalk_amount > 0.0f || infinite_draw)
                         sound.Play();
                     CreateLine();
                 }
@@ -94,7 +95,7 @@ public class DrawLine : MonoBehaviour
                     Vector2 temp_mouse_pos = draw_cursor.transform.position;
                     if (Vector2.Distance(temp_mouse_pos, mouse_positions[mouse_positions.Count - 1]) > .1f)
                     {
-                        if (chalk_amount > 0.0f)
+                        if (chalk_amount > 0.0f || infinite_draw)
                             UpdateLine(temp_mouse_pos);
                     }
                 }
@@ -121,14 +122,28 @@ public class DrawLine : MonoBehaviour
 
     void CreateLine()
     {
-        GameObject current_line = (GameObject)Instantiate(line_prefab, Vector3.zero, Quaternion.identity);
-        line_renderer = current_line.GetComponent<LineRenderer>();
-        mouse_positions.Clear();
-        mouse_positions.Add(draw_cursor.transform.position);
-        mouse_positions.Add(draw_cursor.transform.position + Vector3.up * .1f);
-        line_renderer.SetPosition(0, mouse_positions[0]);
-        line_renderer.SetPosition(1, mouse_positions[1]);
-        lines.Add(current_line);
+        if (controller_mode)
+        {
+            GameObject current_line = (GameObject)Instantiate(line_prefab, Vector3.zero, Quaternion.identity);
+            line_renderer = current_line.GetComponent<LineRenderer>();
+            mouse_positions.Clear();
+            mouse_positions.Add(draw_cursor.transform.position);
+            mouse_positions.Add(draw_cursor.transform.position + Vector3.up * .1f);
+            line_renderer.SetPosition(0, mouse_positions[0]);
+            line_renderer.SetPosition(1, mouse_positions[1]);
+            lines.Add(current_line);
+        }
+        else
+        {
+            GameObject current_line = (GameObject)Instantiate(line_prefab, Vector3.zero, Quaternion.identity);
+            line_renderer = current_line.GetComponent<LineRenderer>();
+            mouse_positions.Clear();
+            mouse_positions.Add(drawing_camera.ScreenToWorldPoint(Input.mousePosition));
+            mouse_positions.Add(drawing_camera.ScreenToWorldPoint(Input.mousePosition));
+            line_renderer.SetPosition(0, mouse_positions[0]);
+            line_renderer.SetPosition(1, mouse_positions[1]);
+            lines.Add(current_line);
+        }
         //NetworkServer.Spawn(current_line);
     }
 

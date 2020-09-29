@@ -18,6 +18,7 @@ TagManager:
   - LevelCam
   - MusicSlider
   - SFXSlider
+  - TileFather
   layers:
   - Default
   - TransparentFX
