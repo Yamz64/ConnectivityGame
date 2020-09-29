@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &892098473066235552
+--- !u!1 &8765445637125297727
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 892098473066235554}
-  - component: {fileID: 892098473066235553}
-  - component: {fileID: 892098473066235580}
-  - component: {fileID: 210046560207874135}
-  - component: {fileID: 892098473066235555}
+  - component: {fileID: 8765445637125296576}
+  - component: {fileID: 8765445637125296577}
+  - component: {fileID: 8765445637125297726}
+  - component: {fileID: 1103872541880154923}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &892098473066235554
+--- !u!4 &8765445637125296576
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892098473066235552}
+  m_GameObject: {fileID: 8765445637125297727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.63, y: -2.38, z: 0}
+  m_LocalPosition: {x: 6.49, y: -0.53, z: -8.19835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &892098473066235553
+--- !u!212 &8765445637125296577
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892098473066235552}
+  m_GameObject: {fileID: 8765445637125297727}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,54 +73,28 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8c39b4828f04946469aaad8772a0dc9c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1cd72fd13cec61346a428b06bcea55c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8828125, y: 0.87109375}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &892098473066235580
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892098473066235552}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.8828125, y: 0.87109375}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!95 &210046560207874135
+--- !u!95 &8765445637125297726
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892098473066235552}
+  m_GameObject: {fileID: 8765445637125297727}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 525320907620cb24d813d5e8b7657dbf, type: 2}
+  m_Controller: {fileID: 9100000, guid: 64d0e05b78dce254bb6316b079937a91, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -130,18 +103,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &892098473066235555
+--- !u!114 &1103872541880154923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892098473066235552}
+  m_GameObject: {fileID: 8765445637125297727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09abe65c55cc3eb4fb25577e3bdf3d80, type: 3}
+  m_Script: {fileID: 11500000, guid: 72c39581413637947b3bbedbca3247b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  in_trigger: 0
-  color: {r: 0, g: 1, b: 0.054290295, a: 1}
-  affected: {fileID: 0}
+  delay: 0.2
+  launch_speed: 3
+  Arrow: {fileID: 2535881758735152036, guid: 960b490785729c643a81876cf2e4c748, type: 3}
