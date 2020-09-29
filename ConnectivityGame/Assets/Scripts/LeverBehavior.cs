@@ -11,12 +11,14 @@ public class LeverBehavior : MonoBehaviour
 
     private Animator anim;
     private SpriteRenderer rend;
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
+        source = GetComponent<AudioSource>();
         rend.color = lever_color;
         activated = false;
         if(affected_object != null)
@@ -33,11 +35,13 @@ public class LeverBehavior : MonoBehaviour
                 if (activated)
                 {
                     anim.SetBool("On", true);
+                    source.Play();
                     if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = true;
                 }
                 else
                 {
                     anim.SetBool("On", false);
+                    source.Play();
                     if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = false;
                 }
             }

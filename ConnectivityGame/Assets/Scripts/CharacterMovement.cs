@@ -29,10 +29,12 @@ public class CharacterMovement : MonoBehaviour
     private bool invincible;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
+    private AudioSource[] sounds;
 
     //--ACCESSORS--
     public float GetMaxJump() { return max_jump_timer; }
     public Rigidbody2D GetRB() { return rb; }
+    public AudioSource[] GetSounds() { return sounds; }
 
     IEnumerator Invincibility_Routine(float duration)
     {
@@ -61,6 +63,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 jump_timer = max_jump_timer;
                 if (!super_lock) super_jump = false;
+                sounds[1].Play();
             }
 
             //jump is inputted
@@ -99,6 +102,7 @@ public class CharacterMovement : MonoBehaviour
         rb.gravityScale = gravity_scale;
 
         sprite = GetComponent<SpriteRenderer>();
+        sounds = GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -150,7 +154,13 @@ public class CharacterMovement : MonoBehaviour
             sprite.color = Color.white;
         }
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag != "Little One" && other.tag != "Big One" && other.tag != "Teleporter")
+            sounds[2].Play();
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if(other.tag != "Little One" && other.tag != "Big One" && other.tag != "Teleporter")

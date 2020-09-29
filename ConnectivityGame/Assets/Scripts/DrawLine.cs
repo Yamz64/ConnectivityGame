@@ -12,6 +12,8 @@ public class DrawLine : MonoBehaviour
 
     public Object line_prefab;
 
+    public AudioSource sound;
+
     private LineRenderer line_renderer;
 
     public List<Vector2> mouse_positions;
@@ -31,6 +33,8 @@ public class DrawLine : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (!sound.isPlaying && chalk_amount > 0.0f)
+                    sound.Play();
                 CreateLine();
             }
             if (Input.GetMouseButton(0))
@@ -53,6 +57,11 @@ public class DrawLine : MonoBehaviour
                     Destroy(lines[i].gameObject);
                 }
                 lines.Clear();
+            }
+
+            if (Input.GetMouseButtonUp(0) || chalk_amount <= 0.0f)
+            {
+                sound.Stop();
             }
         }
     }

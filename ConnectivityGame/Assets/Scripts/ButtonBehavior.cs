@@ -9,24 +9,25 @@ public class ButtonBehavior : MonoBehaviour
     public Color color;
     public GameObject affected;
     private SpriteRenderer rend;
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
+        source = GetComponent<AudioSource>();
         rend.color = color;
     }
 
     private void Update()
     {
-
-
         if (affected != null)
         {
             affected.GetComponent<SpriteRenderer>().color = color;
 
             if (in_trigger && Input.GetButtonDown("Action"))
             {
+                source.Play();
                 affected.GetComponent<ButtonParent>().Activate();
             }
         }

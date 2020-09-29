@@ -23,6 +23,7 @@ public class LittleOneBehavior : CharacterMovement
                 used_extra_jump = false;
                 jump_timer = GetMaxJump();
                 if (!super_lock) super_jump = false;
+                GetComponent<CharacterMovement>().GetSounds()[1].Play();
             }
 
             //jump is inputted
