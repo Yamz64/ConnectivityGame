@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dispenser
+  m_Name: Teleporter
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 523c2028c7963da449c36c33d071c0f0, type: 3}
+      value: {fileID: 21300000, guid: 42542ca0f33d4b748985ffdcdbc9a4d6, type: 3}
     - time: 0.125
-      value: {fileID: 21300000, guid: ff8fdc9bf53496a48b27cc37f57681bf, type: 3}
+      value: {fileID: 21300000, guid: 7a9ecb067f853b841af674d7aa9ed5c6, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: 523c2028c7963da449c36c33d071c0f0, type: 3}
+      value: {fileID: 21300000, guid: 42542ca0f33d4b748985ffdcdbc9a4d6, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,9 +44,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 523c2028c7963da449c36c33d071c0f0, type: 3}
-    - {fileID: 21300000, guid: ff8fdc9bf53496a48b27cc37f57681bf, type: 3}
-    - {fileID: 21300000, guid: 523c2028c7963da449c36c33d071c0f0, type: 3}
+    - {fileID: 21300000, guid: 42542ca0f33d4b748985ffdcdbc9a4d6, type: 3}
+    - {fileID: 21300000, guid: 7a9ecb067f853b841af674d7aa9ed5c6, type: 3}
+    - {fileID: 21300000, guid: 42542ca0f33d4b748985ffdcdbc9a4d6, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

@@ -13,6 +13,7 @@ TagManager:
   - Ground
   - Enemy
   - Conveyor
+  - Teleporter
   layers:
   - Default
   - TransparentFX

@@ -136,13 +136,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.tag != "Little One" && other.tag != "Big One")
+        if(other.tag != "Little One" && other.tag != "Big One" && other.tag != "Teleporter")
         grounded = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag != "Little One" && other.tag != "Big One")
+        if (other.tag != "Little One" && other.tag != "Big One" && other.tag != "Teleporter")
         grounded = false;
     }
 }
