@@ -6,6 +6,8 @@ using Mirror;
 
 public class CharacterMovement : MonoBehaviour
 {
+    public Color invincible_color;
+
     public float network_horizontal;
     public float network_vertical;
     public bool network_action;
@@ -24,6 +26,7 @@ public class CharacterMovement : MonoBehaviour
     public bool super_lock;
 
     private float max_jump_timer;
+    private bool invincible;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
 
@@ -31,8 +34,21 @@ public class CharacterMovement : MonoBehaviour
     public float GetMaxJump() { return max_jump_timer; }
     public Rigidbody2D GetRB() { return rb; }
 
+    IEnumerator Invincibility_Routine(float duration)
+    {
+        invincible = true;
+        yield return new WaitForSeconds(duration);
+        invincible = false;
+    }
+
+    public void MakeInvincible(float duration)
+    {
+        StartCoroutine(Invincibility_Routine(duration));
+    }
+
     public void Die()
     {
+        if(!invincible)
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -123,21 +139,26 @@ public class CharacterMovement : MonoBehaviour
         {
             flipped = true;
         }
-            sprite.flipX = flipped;
-    }
+        sprite.flipX = flipped;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.tag == "Hazards" || other.tag == "Enemy")
+        if (invincible)
         {
-            Die();
+            sprite.color = invincible_color;
+        }
+        else
+        {
+            sprite.color = Color.white;
         }
     }
-
+    
     private void OnTriggerStay2D(Collider2D other)
     {
         if(other.tag != "Little One" && other.tag != "Big One" && other.tag != "Teleporter")
         grounded = true;
+        if (other.tag == "Hazards" || other.tag == "Enemy")
+        {
+            Die();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

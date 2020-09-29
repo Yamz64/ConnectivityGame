@@ -224,11 +224,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf0e3c6efde28042bb0d55656ee1673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invincible_color: {r: 1, g: 1, b: 0, a: 1}
   network_horizontal: 0
   network_vertical: 0
   network_action: 0
+  conveyor_state: 0
   move_speed: 4
   jump_speed: 6
+  conveyor_speed: 0
   super_jump_speed: 11
   jump_timer: 0.2
   gravity_scale: 4
