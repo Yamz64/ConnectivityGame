@@ -15,6 +15,7 @@ TagManager:
   - Conveyor
   - Teleporter
   - TeleporterBox
+  - LevelCam
   layers:
   - Default
   - TransparentFX

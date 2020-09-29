@@ -26,45 +26,94 @@ public class LittleOneBehavior : CharacterMovement
                 GetComponent<CharacterMovement>().GetSounds()[1].Play();
             }
 
-            //jump is inputted
-            if (network_vertical > 0.0f)
+            if (!controller_mode)
             {
-                if (jump_timer > 0.0f)
+                //jump is inputted
+                if (network_vertical > 0.0f)
                 {
-                    jump_timer -= 1.0f * Time.deltaTime;
-                    if (!super_jump)
+                    if (jump_timer > 0.0f)
                     {
-                        GetRB().velocity = new Vector2(GetRB().velocity.x, jump_speed);
-                    }
-                    else
-                    {
-                        if (extra_jump)
-                        {
-                            GetRB().velocity = new Vector2(GetRB().velocity.x, super_jump_speed);
-                        }
-                        else
+                        jump_timer -= 1.0f * Time.deltaTime;
+                        if (!super_jump)
                         {
                             GetRB().velocity = new Vector2(GetRB().velocity.x, jump_speed);
                         }
+                        else
+                        {
+                            if (extra_jump)
+                            {
+                                GetRB().velocity = new Vector2(GetRB().velocity.x, super_jump_speed);
+                            }
+                            else
+                            {
+                                GetRB().velocity = new Vector2(GetRB().velocity.x, jump_speed);
+                            }
+                        }
+                    }
+                    if (!extra_jump) used_extra_jump = true;
+                }
+                //Jump is released
+                else if (network_vertical == 0.0f)
+                {
+                    if (!grounded)
+                    {
+                        if (!extra_jump && used_extra_jump)
+                        {
+                            jump_timer = 0.0f;
+                        }
+                        else
+                        {
+                            if (!used_extra_jump)
+                            {
+                                jump_timer = GetMaxJump();
+                                extra_jump = false;
+                            }
+                        }
                     }
                 }
-                if (!extra_jump) used_extra_jump = true;
             }
-            //Jump is released
-            else if (network_vertical == 0.0f)
+            else
             {
-                if (!grounded)
+                //jump is inputted
+                if (Input.GetButton("JoyJump"))
                 {
-                    if (!extra_jump && used_extra_jump)
+                    if (jump_timer > 0.0f)
                     {
-                        jump_timer = 0.0f;
-                    }
-                    else
-                    {
-                        if (!used_extra_jump)
+                        jump_timer -= 1.0f * Time.deltaTime;
+                        if (!super_jump)
                         {
-                            jump_timer = GetMaxJump();
-                            extra_jump = false;
+                            GetRB().velocity = new Vector2(GetRB().velocity.x, jump_speed);
+                        }
+                        else
+                        {
+                            if (extra_jump)
+                            {
+                                GetRB().velocity = new Vector2(GetRB().velocity.x, super_jump_speed);
+                            }
+                            else
+                            {
+                                GetRB().velocity = new Vector2(GetRB().velocity.x, jump_speed);
+                            }
+                        }
+                    }
+                    if (!extra_jump) used_extra_jump = true;
+                }
+                //Jump is released
+                else if (Input.GetButtonUp("JoyJump"))
+                {
+                    if (!grounded)
+                    {
+                        if (!extra_jump && used_extra_jump)
+                        {
+                            jump_timer = 0.0f;
+                        }
+                        else
+                        {
+                            if (!used_extra_jump)
+                            {
+                                jump_timer = GetMaxJump();
+                                extra_jump = false;
+                            }
                         }
                     }
                 }

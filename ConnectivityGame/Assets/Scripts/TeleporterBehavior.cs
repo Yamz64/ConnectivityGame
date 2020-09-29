@@ -33,9 +33,18 @@ public class TeleporterBehavior : MonoBehaviour
             {
                 if (a.teleported_object.tag == "Little One" || a.teleported_object.tag == "Big One")
                 {
-                    if (Input.GetButtonDown("Action"))
+                    if (!a.teleported_object.GetComponent<CharacterMovement>().controller_mode) { 
+                        if (Input.GetButtonDown("Action"))
+                        {
+                            a.teleported_object.transform.position = teleporter_b.transform.position;
+                        }
+                    }
+                    else
                     {
-                        a.teleported_object.transform.position = teleporter_b.transform.position;
+                        if (Input.GetButtonDown("JoyAction"))
+                        {
+                            a.teleported_object.transform.position = teleporter_b.transform.position;
+                        }
                     }
                 }
                 else
@@ -51,9 +60,19 @@ public class TeleporterBehavior : MonoBehaviour
             {
                 if (b.teleported_object.tag == "Little One" || b.teleported_object.tag == "Big One")
                 {
-                    if (Input.GetButtonDown("Action"))
+                    if (!b.teleported_object.GetComponent<CharacterMovement>().controller_mode)
                     {
-                        b.teleported_object.transform.position = teleporter_a.transform.position;
+                        if (Input.GetButtonDown("Action"))
+                        {
+                            b.teleported_object.transform.position = teleporter_a.transform.position;
+                        }
+                    }
+                    else
+                    {
+                        if (Input.GetButtonDown("JoyAction"))
+                        {
+                            b.teleported_object.transform.position = teleporter_a.transform.position;
+                        }
                     }
                 }
                 else

@@ -20,11 +20,13 @@ public class CharacterMovement : MonoBehaviour
     public float jump_timer;
     public float gravity_scale;
     public float camera_speed;
+    public bool controller_mode;
     public bool can_jump;
     public bool grounded = false;
     public bool flipped;
     public bool super_jump;
     public bool super_lock;
+    public bool cam_mode;           //determines the state that the camera is in, if this is false it is in follow cam, if it is in true it views the whole level
     public Camera cam;
 
 
@@ -82,27 +84,56 @@ public class CharacterMovement : MonoBehaviour
             }
 
             //jump is inputted
-            if (network_vertical > 0.0f)
+            if (!controller_mode)
             {
-                if (jump_timer > 0.0f)
+                if (network_vertical > 0.0f)
                 {
-                    jump_timer -= 1.0f * Time.deltaTime;
-                    if (!super_jump)
+                    if (jump_timer > 0.0f)
                     {
-                        rb.velocity = new Vector2(rb.velocity.x, jump_speed);
+                        jump_timer -= 1.0f * Time.deltaTime;
+                        if (!super_jump)
+                        {
+                            rb.velocity = new Vector2(rb.velocity.x, jump_speed);
+                        }
+                        else
+                        {
+                            rb.velocity = new Vector2(rb.velocity.x, super_jump_speed);
+                        }
                     }
-                    else
+                }
+                //Jump is released
+                else if (network_vertical == 0.0f)
+                {
+                    if (!grounded)
                     {
-                        rb.velocity = new Vector2(rb.velocity.x, super_jump_speed);
+                        jump_timer = 0.0f;
                     }
                 }
             }
-            //Jump is released
-            else if (network_vertical == 0.0f)
+            else
             {
-                if (!grounded)
+                if (Input.GetButton("JoyJump"))
                 {
-                    jump_timer = 0.0f;
+                    if (jump_timer > 0.0f)
+                    {
+                        jump_timer -= 1.0f * Time.deltaTime;
+                        if (!super_jump)
+                        {
+                            rb.velocity = new Vector2(rb.velocity.x, jump_speed);
+                        }
+                        else
+                        {
+                            rb.velocity = new Vector2(rb.velocity.x, super_jump_speed);
+                        }
+                    }
+                }
+                //Jump is released
+                else if (Input.GetButtonDown("JoyJump"))
+                {
+                    if (!grounded)
+                    {
+                        jump_timer = 0.0f;
+                    }
                 }
             }
         }
@@ -125,9 +156,18 @@ public class CharacterMovement : MonoBehaviour
     public void Update()
     {
         //misc
-        network_vertical = Input.GetAxis("Vertical");
-        network_horizontal = Input.GetAxis("Horizontal");
-        network_action = Input.GetButtonDown("Action");
+        if (!controller_mode)
+        {
+            network_vertical = Input.GetAxis("Vertical");
+            network_horizontal = Input.GetAxis("Horizontal");
+            network_action = Input.GetButtonDown("Action");
+        }
+        else
+        {
+            network_vertical = Input.GetAxis("JoyVertical");
+            network_horizontal = Input.GetAxis("JoyHorizontal");
+            network_action = Input.GetButtonDown("JoyAction");
+        }
 
         //--MOVEMENT--
         //--handle vertical movement--
@@ -171,9 +211,19 @@ public class CharacterMovement : MonoBehaviour
         }
 
         //Interp Cam
-        cam.transform.position = new Vector3(transform.position.x, cam.transform.position.y, -10f);
-        StopCoroutine(LerpCam());
-        StartCoroutine(LerpCam());
+        if (!cam_mode)
+        {
+            cam.orthographicSize = 5;
+            cam.transform.position = new Vector3(transform.position.x, cam.transform.position.y, -10f);
+            StopCoroutine(LerpCam());
+            StartCoroutine(LerpCam());
+        }
+        else
+        {
+            GameObject cam_origin = GameObject.FindGameObjectWithTag("LevelCam");
+            cam.transform.position = new Vector3(cam_origin.transform.position.x, cam_origin.transform.position.y, -10f);
+            cam.orthographicSize = cam_origin.transform.localScale.z;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

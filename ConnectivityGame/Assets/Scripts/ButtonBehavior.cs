@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ButtonBehavior : MonoBehaviour
 {
+    public bool controller_mode;
     public bool in_trigger;
 
     public Color color;
@@ -25,10 +26,21 @@ public class ButtonBehavior : MonoBehaviour
         {
             affected.GetComponent<SpriteRenderer>().color = color;
 
-            if (in_trigger && Input.GetButtonDown("Action"))
+            if (!controller_mode)
             {
-                source.Play();
-                affected.GetComponent<ButtonParent>().Activate();
+                if (in_trigger && Input.GetButtonDown("Action"))
+                {
+                    source.Play();
+                    affected.GetComponent<ButtonParent>().Activate();
+                }
+            }
+            else
+            {
+                if (in_trigger && Input.GetButtonDown("JoyAction"))
+                {
+                    source.Play();
+                    affected.GetComponent<ButtonParent>().Activate();
+                }
             }
         }
     }
@@ -37,6 +49,7 @@ public class ButtonBehavior : MonoBehaviour
     {
         if(other.tag == "Little One")
         {
+            controller_mode = other.GetComponent<CharacterMovement>().controller_mode;
             in_trigger = true;
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LeverBehavior : MonoBehaviour
 {
+    public bool controller_mode;
     public bool in_trigger;
     public bool activated;
     public Color lever_color;
@@ -29,20 +30,42 @@ public class LeverBehavior : MonoBehaviour
     {
         if (in_trigger)
         {
-            if (Input.GetButtonDown("Action"))
+            if (!controller_mode)
             {
-                activated = !activated;
-                if (activated)
+                if (Input.GetButtonDown("Action"))
                 {
-                    anim.SetBool("On", true);
-                    source.Play();
-                    if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = true;
+                    activated = !activated;
+                    if (activated)
+                    {
+                        anim.SetBool("On", true);
+                        source.Play();
+                        if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = true;
+                    }
+                    else
+                    {
+                        anim.SetBool("On", false);
+                        source.Play();
+                        if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = false;
+                    }
                 }
-                else
+            }
+            else
+            {
+                if (Input.GetButtonDown("JoyAction"))
                 {
-                    anim.SetBool("On", false);
-                    source.Play();
-                    if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = false;
+                    activated = !activated;
+                    if (activated)
+                    {
+                        anim.SetBool("On", true);
+                        source.Play();
+                        if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = true;
+                    }
+                    else
+                    {
+                        anim.SetBool("On", false);
+                        source.Play();
+                        if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = false;
+                    }
                 }
             }
         }
@@ -52,6 +75,7 @@ public class LeverBehavior : MonoBehaviour
     {
         if(other.tag == "Little One")
         {
+            controller_mode = other.GetComponent<CharacterMovement>().controller_mode;
             in_trigger = true;
         }
     }
