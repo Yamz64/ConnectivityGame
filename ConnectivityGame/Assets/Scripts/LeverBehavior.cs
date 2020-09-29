@@ -8,18 +8,17 @@ public class LeverBehavior : MonoBehaviour
     public bool activated;
     public Color lever_color;
     public GameObject affected_object;
-    public Sprite on;
-    public Sprite off;
 
+    private Animator anim;
     private SpriteRenderer rend;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
         rend.color = lever_color;
         activated = false;
-        rend.sprite = off;
         if(affected_object != null)
         affected_object.GetComponent<SpriteRenderer>().color = lever_color;
     }
@@ -33,12 +32,12 @@ public class LeverBehavior : MonoBehaviour
                 activated = !activated;
                 if (activated)
                 {
-                    rend.sprite = on;
+                    anim.SetBool("On", true);
                     if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = true;
                 }
                 else
                 {
-                    rend.sprite = off;
+                    anim.SetBool("On", false);
                     if (affected_object != null) affected_object.GetComponent<ToggleItemParent>().toggled = false;
                 }
             }

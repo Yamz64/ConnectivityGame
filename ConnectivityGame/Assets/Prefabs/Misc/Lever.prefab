@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2155681648269572683}
   - component: {fileID: 2155681648269572724}
   - component: {fileID: 2155681648269572725}
+  - component: {fileID: 2001178582749250812}
   - component: {fileID: 2155681648269572726}
   m_Layer: 0
   m_Name: Lever
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: b10337392542b354b8276fa2cd993bd9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd315d4e96ce3ad4688a8b559d0a563d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,6 +111,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &2001178582749250812
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2155681648269572727}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f68cc73fe532cf841b5b8dff2512a6b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &2155681648269572726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +144,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   in_trigger: 0
   activated: 0
-  lever_color: {r: 1, g: 0, b: 0, a: 0}
+  lever_color: {r: 1, g: 0, b: 0, a: 1}
   affected_object: {fileID: 0}
-  on: {fileID: 21300000, guid: b10337392542b354b8276fa2cd993bd9, type: 3}
-  off: {fileID: 21300000, guid: 079bb00dedc992c4fa3207ea097bf830, type: 3}
