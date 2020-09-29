@@ -51,7 +51,7 @@ public class ConveyorBehavior : ToggleItemParent
         }
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    public void OnCollisionStay2D(Collision2D other)
     {
         if(other.gameObject.tag == "Little One" || other.gameObject.tag == "Big One")
         {
@@ -63,7 +63,7 @@ public class ConveyorBehavior : ToggleItemParent
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+    public void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.tag == "Little One" || other.gameObject.tag == "Big One")
         {
